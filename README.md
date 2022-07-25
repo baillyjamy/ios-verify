@@ -29,13 +29,13 @@ github "synaps-io/ios-verify"
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/synaps-ios/ios-verify", from: "0.0.1")
+    .package(url: "https://github.com/synaps-io/ios-verify", from: "0.0.1")
 ]
 ```
 
 ## Installation
 ```swift
-import Verify
+import SynapsVerify
 ```
 ## Usage
 ### SwiftUI
@@ -101,7 +101,7 @@ Now you are ready to customize your UISynapsIndividual or UISynapsCorporate from
 
 `Swift`
 ```swift
-import Verify
+import SynapsVerify
 import AVFoundation
 class ViewController: UIViewController {
     
