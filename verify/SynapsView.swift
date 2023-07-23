@@ -41,8 +41,23 @@ public struct SynapsViewNew: UIViewRepresentable {
 		let params = [
 			"session_id": sessionId
 		]
-		request.httpBody = params.getPostString().data(using: .utf8)
+
+		request.append(parameters: params)
+		print(request)
 		return request
+	}
+}
+
+extension URLRequest {
+	mutating func append(parameters: [String: String]) {
+		guard var url = url, var urlComponents = URLComponents(string: url.absoluteString) else {
+			return
+		}
+
+		urlComponents.queryItems = parameters.map { key, value in
+			URLQueryItem(name: key, value: value)
+		}
+		self.url = urlComponents.url
 	}
 }
 
