@@ -15,10 +15,17 @@ import Foundation
 
 #if canImport(SwiftUI) && canImport(WebKit)
 @available(iOS 13.0, *)
-
 public struct SynapsViewNew: UIViewRepresentable {
 	@Binding var sessionId: String
 	let type: VerifyType
+
+	public init(
+		sessionId: Binding<String>,
+		type: VerifyType
+	) {
+		self._sessionId = sessionId
+		self.type = type
+	}
 
 	public func makeUIView(context: Context) -> WKWebView {
 		return WKWebView()
@@ -30,7 +37,7 @@ public struct SynapsViewNew: UIViewRepresentable {
 	}
 }
 
-
+@available(iOS 13.0, *)
 public struct SynapsView: UIViewRepresentable {
 	@Binding var sessionId: String
 	var tier: String?
