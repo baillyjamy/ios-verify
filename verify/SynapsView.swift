@@ -32,10 +32,31 @@ public struct SynapsViewNew: UIViewRepresentable {
 	}
 
 	public func updateUIView(_ webView: WKWebView, context: Context) {
-		let request = URLRequest(url: type.url)
+		let request = prepareRequest()
 		webView.load(request)
 	}
+
+	func prepareRequest() -> URLRequest {
+		var request = URLRequest(url: type.url)
+		let params = [
+			"session_id": sessionId
+		]
+		request.httpBody = params.getPostString().data(using: .utf8)
+		return request
+	}
 }
+
+extension Dictionary where Key == String, Value == String {
+	func getPostString() -> String {
+		var data = [String]()
+		for(key, value) in self {
+			data.append(key + "=\(value)")
+		}
+		return data.map { String($0) }.joined(separator: "&")
+	}
+}
+
+
 
 @available(iOS 13.0, *)
 public struct SynapsView: UIViewRepresentable {
