@@ -13,7 +13,7 @@ internal class Synaps {
 }
 
 
-enum VerifyType {
+public enum VerifyType {
 	case individual
 	case corporate
 
