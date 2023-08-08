@@ -63,7 +63,7 @@ extension UIColor {
 
 }
 @objcMembers public class UISynaps:  UIControl {
-	open var baseUrl = VerifyType.individual.url
+	open var baseUrl = Synaps.baseUrl
     var synaps: WKWebView!
     public var status: String!
     var scriptHandler: WKScriptMessageHandler!
@@ -94,7 +94,6 @@ extension UIColor {
 
     public init(frame: CGRect, scriptHandler: WKScriptMessageHandler, type: String="individual", tier: String?=nil, lang: String?=nil, primaryColor: UIColor?=nil, secondaryColor: UIColor?=nil){
         super.init(frame: frame)
-        self.setBaseUrl(type: type)
         self.tier = tier
         self.primaryColor = primaryColor
         self.secondaryColor = secondaryColor
@@ -105,7 +104,6 @@ extension UIColor {
 
     public init(frame: CGRect, scriptHandler: WKScriptMessageHandler, type: String="individual") {
         super.init(frame: frame)
-        self.setBaseUrl(type: type)
         self.scriptHandler = scriptHandler
     }
 
@@ -115,21 +113,12 @@ extension UIColor {
 
     public init?(coder: NSCoder, scriptHandler: WKScriptMessageHandler, type: String="individual"){
         super.init(coder: coder)
-        self.setBaseUrl(type: type)
         self.scriptHandler = scriptHandler
         self.initWebView()
     }
     
     public required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-
-    func setBaseUrl(type: String) {
-        if type == "individual" {
-			self.baseUrl = VerifyType.individual.url
-        } else if type == "corporate" {
-            self.baseUrl = VerifyType.corporate.url
-        }
     }
 
     public func initWebView() {
