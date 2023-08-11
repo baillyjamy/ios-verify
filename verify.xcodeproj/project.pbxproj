@@ -20,6 +20,8 @@
 		779737882A8661F300B41CFF /* SynapsWebViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779737872A8661F300B41CFF /* SynapsWebViewDelegate.swift */; };
 		7797378B2A8662C700B41CFF /* URLRequestExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7797378A2A8662C700B41CFF /* URLRequestExtension.swift */; };
 		7797378F2A8665F400B41CFF /* SynapsError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7797378E2A8665F400B41CFF /* SynapsError.swift */; };
+		779737932A866D6C00B41CFF /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 779737922A866D6C00B41CFF /* README.md */; };
+		779737952A866D8E00B41CFF /* SynapsVerify.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 779737942A866D8E00B41CFF /* SynapsVerify.podspec */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +49,9 @@
 		779737872A8661F300B41CFF /* SynapsWebViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynapsWebViewDelegate.swift; sourceTree = "<group>"; };
 		7797378A2A8662C700B41CFF /* URLRequestExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRequestExtension.swift; sourceTree = "<group>"; };
 		7797378E2A8665F400B41CFF /* SynapsError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynapsError.swift; sourceTree = "<group>"; };
+		779737902A866D5400B41CFF /* Package.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
+		779737922A866D6C00B41CFF /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		779737942A866D8E00B41CFF /* SynapsVerify.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SynapsVerify.podspec; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +76,9 @@
 		16A9BBD0283E686D0095A38C = {
 			isa = PBXGroup;
 			children = (
+				779737942A866D8E00B41CFF /* SynapsVerify.podspec */,
+				779737922A866D6C00B41CFF /* README.md */,
+				779737902A866D5400B41CFF /* Package.swift */,
 				16A9BBDC283E686D0095A38C /* verify */,
 				16A9BBE8283E686D0095A38C /* verifyTests */,
 				16A9BBDB283E686D0095A38C /* Products */,
@@ -212,6 +220,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				779737932A866D6C00B41CFF /* README.md in Resources */,
+				779737952A866D8E00B41CFF /* SynapsVerify.podspec in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
