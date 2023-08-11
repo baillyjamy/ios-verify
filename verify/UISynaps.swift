@@ -134,6 +134,7 @@ extension UIColor {
         let webViewConfig = WKWebViewConfiguration()
         webViewConfig.allowsInlineMediaPlayback = true
         webViewConfig.userContentController = contentController
+		webViewConfig.preferences.javaScriptEnabled = true
         self.synaps = WKWebView(frame: self.frame, configuration: webViewConfig)
         self.addSubview(self.synaps)
         self.synaps.translatesAutoresizingMaskIntoConstraints = false

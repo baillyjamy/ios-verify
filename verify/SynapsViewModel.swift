@@ -9,22 +9,11 @@ import AVFoundation
 import Combine
 
 @available(iOS 15.0, *)
-extension SynapsView {
-	@MainActor class ViewModel : ObservableObject {
-		@Published var permissionGranted = false
+@MainActor class SynapsViewModel : ObservableObject {
+	@Published var ready = false
 
-		var anyCancellables = Set<AnyCancellable>()
-
-		func requestPermission() {
-			AVCaptureDevice.requestAccess(
-				for: .video,
-				completionHandler: { accessGranted in
-					DispatchQueue.main.async {
-						self.permissionGranted = accessGranted
-						print("PERMISSION GRANTED: \(self.permissionGranted)")
-					}
-				}
-			)
-		}
-	}
+    var onReady: (() -> Void)? = nil
+	var onFinished: (() -> Void)? = nil
+	
+	var anyCancellables = Set<AnyCancellable>()
 }

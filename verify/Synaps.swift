@@ -10,9 +10,12 @@ import Foundation
 internal class Synaps {
 	static let baseEndpoint = "https://verify.synaps.io/"
 	static let baseUrl = URL(string: baseEndpoint)!
-	static let baseUrlIndividual = "https://verify-git-feature-post-message-mobile-sdk-synaps-hub.vercel.app/"
-	static let baseUrlCorporate = "https://verify-v3.synaps.io/"
-	static let testUrl = "https://browser.facetec.com/"
+
+	static let messageHandlerJavascript = """
+		window.addEventListener("message", ({ data }) => {
+			window.webkit.messageHandlers.synaps.postMessage(data.type)
+		});
+	"""
 }
 
 public enum VerifyLang {
