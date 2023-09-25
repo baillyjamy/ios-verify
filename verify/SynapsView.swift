@@ -13,7 +13,7 @@ import AVFoundation
 
 @available(iOS 15.0, *)
 public struct SynapsView: UIViewRepresentable {
-	@ObservedObject private var viewModel = SynapsViewModel()
+	@ObservedObject internal var viewModel = SynapsViewModel()
 
 	@Binding var sessionId: String
 	let lang: VerifyLang
@@ -44,7 +44,8 @@ public struct SynapsView: UIViewRepresentable {
 				forMainFrameOnly: false
 			)
 		)
-		contentController.add(ScriptHandler(viewModel: viewModel), name: "synaps")
+		contentController.add(context.coordinator, name: "synaps")
+        contentController.add(context.coordinator, name: "verify")
 
 		let webViewConfig = WKWebViewConfiguration()
 		webViewConfig.allowsInlineMediaPlayback = true
@@ -59,6 +60,9 @@ public struct SynapsView: UIViewRepresentable {
 		if #available(iOS 16.4, *) {
 			webView.isInspectable = true
 		}
+		viewModel.onMessage = { message in
+			webView.evaluateJavaScript(message)
+		}
 		return webView
 	}
 
@@ -70,12 +74,17 @@ public struct SynapsView: UIViewRepresentable {
 		let params = [
 			"session_id": sessionId,
 			"lang": lang.code,
-			"tier": tierIdentifier,
-			"mobile": "ios"
+			//"tier": tierIdentifier,
+			"platform": "ios"
 		]
 
 		request.append(parameters: params)
+		print(request)
 		return request
+	}
+
+	public func makeCoordinator() -> SynapsCoordinator {
+		SynapsCoordinator(self)
 	}
 }
 

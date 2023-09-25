@@ -9,7 +9,9 @@ import Foundation
 
 internal class Synaps {
 	static let baseEndpoint = "https://verify.synaps.io/"
-	static let baseUrl = URL(string: baseEndpoint)!
+	static let baseDevEndpoint = "https://verify-git-riwan-nfc-synaps-hub.vercel.app"
+	static let baseDevEndpointRaphael = "https://verify-git-raphael-nfc-synaps-hub.vercel.app"
+	static let baseUrl = URL(string: baseDevEndpointRaphael)!
 
 	static let messageHandlerJavascript = """
 		window.addEventListener("message", ({ data }) => {
