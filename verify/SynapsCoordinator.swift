@@ -8,6 +8,13 @@
 import WebKit
 import CoreNFC
 
+protocol SynapsNfcEvent {
+    func nfcStart()
+    func nfcStop()
+    func nfcTransmit(body: [String: AnyObject])
+    func nfcStep(body: [String: AnyObject])
+}
+
 @available(iOS 15.0, *)
 public class SynapsCoordinator: NSObject {
 	private var readerSession: NFCTagReaderSession?
@@ -50,30 +57,18 @@ extension SynapsCoordinator: WKScriptMessageHandler {
             guard let type = body["type"] as? String else {
                 return
             }
-
             switch type {
             case "nfc_start":
                 nfcStart()
             case "nfc_stop":
                 nfcStop()
             case "nfc_transmit":
-                //dump(message)
-                //dump(message.body)
-                guard let value = body["apdu"] as? String else { return }
-                nfcTransmit(apdu: value)
+                nfcTransmit(body: body)
             case "log":
 				break;
                 //print("log")
             case "step":
-                guard let value = body["step"] as? String else { return }
-                self.step = value
-                guard let lengthStr = body["length"] as? String else { return }
-                if let length = Int(lengthStr) {
-                    self.length = length
-                    self.cursor = 0
-                } else {
-                    self.length = 0
-                }
+                nfcStep(body: body)
             default:
                 break
             }
@@ -141,13 +136,6 @@ extension SynapsCoordinator: NFCTagReaderSessionDelegate {
 
 		print("try send command")
 		let (_, sw1, sw2) = try await tag.sendCommand(apdu: selectCommand)
-		/*
-		tag.sendCommand(apdu: selectCommand) { _, sw1, sw2, error in
-			if sw1 == 0x90 && sw2 == 0x00 {
-				print("Session reset successfully")
-			}
-		}
-		 */
 		if sw1 == 0x90 && sw2 == 0x00 {
 			print("Session reset successfully")
 			return true
@@ -155,41 +143,6 @@ extension SynapsCoordinator: NFCTagReaderSessionDelegate {
 
 		print("Session reset failed. SW: \(String(format: "%02X", sw1))\(String(format: "%02X", sw2))")
 		return false
-	}
-
-	func nfcStart() {
-		guard NFCNDEFReaderSession.readingAvailable else {
-			// TODO: Handle the error (send a message to the webview)
-			print("Reading unavailable")
-			return
-		}
-
-		if NFCTagReaderSession.readingAvailable {
-			readerSession = NFCTagReaderSession(pollingOption: [.iso14443], delegate: self, queue: nil)
-			readerSession?.alertMessage = "Hold your iPhone near the item to learn more about it."
-			readerSession?.begin()
-		}
-	}
-
-	func nfcStop() {
-		if !finished {
-			finished = true
-			sendMessage("")
-			readerSession?.invalidate()
-		}
-	}
-
-	func nfcTransmit(apdu: String) {
-		sendMessage(apdu)
-
-		if readerSession?.isReady ?? false {
-			if self.length > 0 {
-				readerSession?.alertMessage = "\(self.step ?? "/"): \((100*self.cursor)/self.length)%";
-				self.cursor += 1
-			} else {
-				readerSession?.alertMessage = self.step ?? "loading..."
-			}
-		}
 	}
 
 	func start(tag: NFCISO7816Tag) async throws {
@@ -203,19 +156,14 @@ extension SynapsCoordinator: NFCTagReaderSessionDelegate {
 		while true {
 			let message = await waitForMessage()
 
-            //print("Message: \(message)")
-
 			if finished {
 				print("Finished")
 				return
 			}
 
 			self.apdu = Optional.none
-			//try await Task.sleep(nanoseconds: UInt64(0.05 * Double(NSEC_PER_SEC)))
 
-            //print("Before send")
 			let rapdu = try await self.send(tag: tag, message)
-            //print("After send : '\(rapdu)'")
 			DispatchQueue.main.async {
 				self.response(rapdu)
 
@@ -252,85 +200,12 @@ extension SynapsCoordinator: NFCTagReaderSessionDelegate {
 		data.append(sw1)
 		data.append(sw2)
 		return data
-
-		/*
-		do {
-
-		} catch let error {
-			print("Error from sendCommand")
-			tag.sendCommand(apdu: apdu) { data, sw1, sw2, erorr in
-				print("SendCommand failed. SW: \(String(format: "%02X", sw1)) - \(String(format: "%02X", sw2))")
-			}
-			throw error
-			/*
-
-			if retry < 5 {
-				retry += 1
-				print("retry nb : \(retry)")
-
-
-				guard let nfcTag else {
-					throw error
-				}
-				if try await self.resetSession(tag: nfcTag) {
-					return try await send(tag: tag, command)
-				} else {
-					throw error
-				}
-				//return try await send(tag: tag, command)
-			} else {
-				print("Error from sendCommand")
-				throw error
-			}
-			 */
-		}
-		 */
 	}
-
-	/*
-	func send(tag: NFCISO7816Tag, _ command: String) async throws -> Data {
-		let cmd = Data(base64Encoded: command)!
-		let apdu = NFCISO7816APDU(data: cmd)!
-		do {
-			var (data, sw1, sw2) = try await tag.sendCommand(apdu: apdu)
-			data.append(sw1)
-			data.append(sw2)
-			return data
-		} catch let error {
-			print("Error from sendCommand")
-			if retry < 5 {
-				retry += 1
-				print("retry nb : \(retry)")
-
-
-				guard let nfcTag else {
-					throw error
-				}
-				if try await self.resetSession(tag: nfcTag) {
-					return try await send(tag: tag, command)
-				} else {
-					throw error
-				}
-				//return try await send(tag: tag, command)
-			} else {
-				print("Error from sendCommand")
-				throw error
-			}
-		}
-	}
-	 */
 
 	private func sendWebviewMessage(_ cmd: String) {
-		//print("Evaluate: \(cmd)")
 		DispatchQueue.main.async {
 			self.parent.viewModel.onMessage?(cmd)
 		}
-		/*
-		parent.webView?.evaluateJavaScript(cmd) { [weak self] _, error in
-			guard let error else { return }
-			self?.onErrorListener?(error)
-		}
-		 */
 	}
 
 	private func tagConnected() {
@@ -343,7 +218,6 @@ extension SynapsCoordinator: NFCTagReaderSessionDelegate {
 	}
 
 	private func response(_ rapdu: Data) {
-        //print("reponse : '\(rapdu.base64EncodedString())'")
 		self.sendWebviewMessage("window.__verify_ios_rapdu('\(rapdu.base64EncodedString())')")
 	}
 
@@ -359,6 +233,58 @@ extension SynapsCoordinator: NFCTagReaderSessionDelegate {
 			}
 		}
 	}
+}
+
+extension SynapsCoordinator: SynapsNfcEvent {
+    func nfcStart() {
+        guard NFCNDEFReaderSession.readingAvailable else {
+            // TODO: Handle the error (send a message to the webview)
+            print("Reading unavailable")
+            return
+        }
+
+        if NFCTagReaderSession.readingAvailable {
+            readerSession = NFCTagReaderSession(pollingOption: [.iso14443], delegate: self, queue: nil)
+            readerSession?.alertMessage = "Hold your iPhone near the item to learn more about it."
+            readerSession?.begin()
+        }
+    }
+
+    func nfcStop() {
+        if !finished {
+            finished = true
+            sendMessage("")
+            readerSession?.invalidate()
+        }
+    }
+
+    func nfcTransmit(body: [String: AnyObject]) {
+        guard let apdu = body["apdu"] as? String else {
+            return
+        }
+        sendMessage(apdu)
+
+        if readerSession?.isReady ?? false {
+            if self.length > 0 {
+                readerSession?.alertMessage = "\(self.step ?? "/"): \((100*self.cursor)/self.length)%";
+                self.cursor += 1
+            } else {
+                readerSession?.alertMessage = self.step ?? "loading..."
+            }
+        }
+    }
+
+    func nfcStep(body: [String: AnyObject]) {
+        guard let value = body["step"] as? String else { return }
+        self.step = value
+        guard let lengthStr = body["length"] as? String else { return }
+        if let length = Int(lengthStr) {
+            self.length = length
+            self.cursor = 0
+        } else {
+            self.length = 0
+        }
+    }
 }
 
 extension Data {
