@@ -13,6 +13,15 @@
 		16A9BBEA283E686D0095A38C /* verifyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A9BBE9283E686D0095A38C /* verifyTests.swift */; };
 		16A9BBEB283E686D0095A38C /* verify.h in Headers */ = {isa = PBXBuildFile; fileRef = 16A9BBDD283E686D0095A38C /* verify.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		16A9BC1F2840E4FE0095A38C /* Synaps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A9BC1E2840E4FE0095A38C /* Synaps.swift */; };
+		773CE24A2A76F211005AF303 /* SynapsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773CE2482A76F211005AF303 /* SynapsViewModel.swift */; };
+		778BF4922A6AA4D100C53165 /* SynapsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778BF4912A6AA4D100C53165 /* SynapsView.swift */; };
+		779737842A86610100B41CFF /* SynapsScriptHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779737832A86610100B41CFF /* SynapsScriptHandler.swift */; };
+		779737862A86618600B41CFF /* SynapsListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779737852A86618600B41CFF /* SynapsListener.swift */; };
+		779737882A8661F300B41CFF /* SynapsWebViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779737872A8661F300B41CFF /* SynapsWebViewDelegate.swift */; };
+		7797378B2A8662C700B41CFF /* URLRequestExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7797378A2A8662C700B41CFF /* URLRequestExtension.swift */; };
+		7797378F2A8665F400B41CFF /* SynapsError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7797378E2A8665F400B41CFF /* SynapsError.swift */; };
+		779737932A866D6C00B41CFF /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 779737922A866D6C00B41CFF /* README.md */; };
+		779737952A866D8E00B41CFF /* SynapsVerify.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 779737942A866D8E00B41CFF /* SynapsVerify.podspec */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,6 +42,16 @@
 		16A9BBE4283E686D0095A38C /* verifyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = verifyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		16A9BBE9283E686D0095A38C /* verifyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = verifyTests.swift; sourceTree = "<group>"; };
 		16A9BC1E2840E4FE0095A38C /* Synaps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Synaps.swift; sourceTree = "<group>"; };
+		773CE2482A76F211005AF303 /* SynapsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SynapsViewModel.swift; sourceTree = "<group>"; };
+		778BF4912A6AA4D100C53165 /* SynapsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynapsView.swift; sourceTree = "<group>"; };
+		779737832A86610100B41CFF /* SynapsScriptHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynapsScriptHandler.swift; sourceTree = "<group>"; };
+		779737852A86618600B41CFF /* SynapsListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynapsListener.swift; sourceTree = "<group>"; };
+		779737872A8661F300B41CFF /* SynapsWebViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynapsWebViewDelegate.swift; sourceTree = "<group>"; };
+		7797378A2A8662C700B41CFF /* URLRequestExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRequestExtension.swift; sourceTree = "<group>"; };
+		7797378E2A8665F400B41CFF /* SynapsError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynapsError.swift; sourceTree = "<group>"; };
+		779737902A866D5400B41CFF /* Package.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
+		779737922A866D6C00B41CFF /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		779737942A866D8E00B41CFF /* SynapsVerify.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SynapsVerify.podspec; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +76,9 @@
 		16A9BBD0283E686D0095A38C = {
 			isa = PBXGroup;
 			children = (
+				779737942A866D8E00B41CFF /* SynapsVerify.podspec */,
+				779737922A866D6C00B41CFF /* README.md */,
+				779737902A866D5400B41CFF /* Package.swift */,
 				16A9BBDC283E686D0095A38C /* verify */,
 				16A9BBE8283E686D0095A38C /* verifyTests */,
 				16A9BBDB283E686D0095A38C /* Products */,
@@ -75,10 +97,17 @@
 		16A9BBDC283E686D0095A38C /* verify */ = {
 			isa = PBXGroup;
 			children = (
+				779737892A8662AE00B41CFF /* Extension */,
 				16A9BBDD283E686D0095A38C /* verify.h */,
-				16A9BC1E2840E4FE0095A38C /* Synaps.swift */,
 				166EED3E284761C200B942F7 /* UISynaps.swift */,
 				16A9BBDE283E686D0095A38C /* verify.docc */,
+				16A9BC1E2840E4FE0095A38C /* Synaps.swift */,
+				778BF4912A6AA4D100C53165 /* SynapsView.swift */,
+				773CE2482A76F211005AF303 /* SynapsViewModel.swift */,
+				779737852A86618600B41CFF /* SynapsListener.swift */,
+				779737832A86610100B41CFF /* SynapsScriptHandler.swift */,
+				779737872A8661F300B41CFF /* SynapsWebViewDelegate.swift */,
+				7797378E2A8665F400B41CFF /* SynapsError.swift */,
 			);
 			path = verify;
 			sourceTree = "<group>";
@@ -89,6 +118,14 @@
 				16A9BBE9283E686D0095A38C /* verifyTests.swift */,
 			);
 			path = verifyTests;
+			sourceTree = "<group>";
+		};
+		779737892A8662AE00B41CFF /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				7797378A2A8662C700B41CFF /* URLRequestExtension.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -149,7 +186,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1340;
-				LastUpgradeCheck = 1340;
+				LastUpgradeCheck = 1430;
 				TargetAttributes = {
 					16A9BBD9283E686D0095A38C = {
 						CreatedOnToolsVersion = 13.4;
@@ -183,6 +220,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				779737932A866D6C00B41CFF /* README.md in Resources */,
+				779737952A866D8E00B41CFF /* SynapsVerify.podspec in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -200,8 +239,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				779737882A8661F300B41CFF /* SynapsWebViewDelegate.swift in Sources */,
 				16A9BBDF283E686D0095A38C /* verify.docc in Sources */,
 				166EED3F284761C200B942F7 /* UISynaps.swift in Sources */,
+				778BF4922A6AA4D100C53165 /* SynapsView.swift in Sources */,
+				779737842A86610100B41CFF /* SynapsScriptHandler.swift in Sources */,
+				773CE24A2A76F211005AF303 /* SynapsViewModel.swift in Sources */,
+				7797378F2A8665F400B41CFF /* SynapsError.swift in Sources */,
+				779737862A86618600B41CFF /* SynapsListener.swift in Sources */,
+				7797378B2A8662C700B41CFF /* URLRequestExtension.swift in Sources */,
 				16A9BC1F2840E4FE0095A38C /* Synaps.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -276,7 +322,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -333,7 +379,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -352,21 +398,26 @@
 				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
 				ARCHS = "$(ARCHS_STANDARD)";
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.0.2;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++17";
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = io.synaps.verify;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
@@ -388,21 +439,26 @@
 				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
 				ARCHS = "$(ARCHS_STANDARD)";
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.0.2;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++17";
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = io.synaps.verify;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";

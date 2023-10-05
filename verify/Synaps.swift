@@ -5,63 +5,65 @@
 //  Created by Omar Sy on 25/05/2022.
 //
 
-#if canImport(SwiftUI)
-import SwiftUI
-#endif
-#if canImport(WebKit)
-import WebKit
-#endif
-import AVFoundation
+import Foundation
 
-#if canImport(SwiftUI) && canImport(WebKit)
-@available(iOS 13.0, *)
-public struct Synaps: UIViewRepresentable {
-    @Binding var sessionId: String
-    var tier: String?
-    var type: String
-    var lang: String?
-    var primaryColor: UIColor?
-    var secondaryColor: UIColor?
-    var ready: () -> Void
-    var finished: () -> Void
-    public init(sessionId: Binding<String>, type:String="individual", tier: String?=nil, lang: String?=nil, primaryColor: UIColor?=nil, secondaryColor: UIColor?=nil, ready: @escaping () -> Void , finished: @escaping () -> Void){
-        self._sessionId = sessionId
-        self.type = type
-        self.tier = tier
-        self.primaryColor = primaryColor
-        self.secondaryColor = secondaryColor
-        self.lang = lang
-        self.finished = finished
-        self.ready = ready
-    }
-    public func makeUIView(context: Context) -> UISynaps  {
-        let webView = UISynaps(frame: .zero, scriptHandler: StoryBoardHandler(self), type: self.type, tier: self.tier, lang: self.lang, primaryColor: self.primaryColor, secondaryColor: self.secondaryColor)
-        
-        return webView
-    }
-    
-    public func updateUIView(_ uiView: UISynaps, context: Context) {
-        
-        if self.sessionId != ""  {
-            uiView.setSessionId(sessionId: self.sessionId)
-        }
-    }
-    public class StoryBoardHandler: NSObject, WKScriptMessageHandler {
-        var view: Synaps
-        init(_ view: Synaps) {
-            self.view = view
-            super.init()
-        }
-        public func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
-            if message.name == "synaps" {
-                let status = message.body as! String
-                if status == "ready" {
-                    self.view.ready()
-                } else if status == "finished" {
-                    self.view.finished()
-                }
-            }
-          }
-    }
+internal class Synaps {
+	static let baseEndpoint = "https://verify.synaps.io/"
+	static let baseUrl = URL(string: baseEndpoint)!
+
+	static let messageHandlerJavascript = """
+		window.addEventListener("message", ({ data }) => {
+			window.webkit.messageHandlers.synaps.postMessage(data.type)
+		});
+	"""
 }
-#endif
+
+public enum VerifyLang {
+	case English
+	case French
+	case German
+	case Spanish
+	case Italian
+	case Japanese
+	case Korean
+	case Portuguese
+	case Romanian
+	case Russian
+	case Turkish
+	case Vietnamese
+	case Chinese
+	case ChineseTraditional
+
+	var code: String {
+		switch self {
+		case .English:
+			return "en"
+		case .French:
+			return "fr"
+		case .German:
+			return "de"
+		case .Spanish:
+			return "es"
+		case .Italian:
+			return "it"
+		case .Japanese:
+			return "ja"
+		case .Korean:
+			return "ko"
+		case .Portuguese:
+			return "pt"
+		case .Romanian:
+			return "ro"
+		case .Russian:
+			return "ru"
+		case .Turkish:
+			return "tr"
+		case .Vietnamese:
+			return "vi"
+		case .Chinese:
+			return "zh-CN"
+		case .ChineseTraditional:
+			return "zh-TW"
+		}
+	}
+}

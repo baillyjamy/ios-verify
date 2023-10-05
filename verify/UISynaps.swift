@@ -63,32 +63,37 @@ extension UIColor {
 
 }
 @objcMembers public class UISynaps:  UIControl {
-    open var baseUrl = "https://verify.synaps.io/"
+	open var baseUrl = Synaps.baseUrl
     var synaps: WKWebView!
     public var status: String!
     var scriptHandler: WKScriptMessageHandler!
+
     @IBInspectable
     public var primaryColor: UIColor? {
             didSet { redraw() }
         }
+
     @IBInspectable
     public var secondaryColor: UIColor? {
             didSet { redraw() }
         }
+
     @IBInspectable
     public var tier: String? {
             didSet { redraw() }
         }
+
     @objc public var sessionId: String? {
             didSet { redraw() }
     }
+
     @IBInspectable
     public var lang: String? {
             didSet { redraw() }
     }
+
     public init(frame: CGRect, scriptHandler: WKScriptMessageHandler, type: String="individual", tier: String?=nil, lang: String?=nil, primaryColor: UIColor?=nil, secondaryColor: UIColor?=nil){
         super.init(frame: frame)
-        self.setBaseUrl(type: type)
         self.tier = tier
         self.primaryColor = primaryColor
         self.secondaryColor = secondaryColor
@@ -96,17 +101,18 @@ extension UIColor {
         self.scriptHandler = scriptHandler
         self.initWebView()
     }
+
     public init(frame: CGRect, scriptHandler: WKScriptMessageHandler, type: String="individual") {
         super.init(frame: frame)
-        self.setBaseUrl(type: type)
         self.scriptHandler = scriptHandler
     }
-    public override init(frame: CGRect) {
+
+	public override init(frame: CGRect) {
         super.init(frame: frame)
     }
+
     public init?(coder: NSCoder, scriptHandler: WKScriptMessageHandler, type: String="individual"){
         super.init(coder: coder)
-        self.setBaseUrl(type: type)
         self.scriptHandler = scriptHandler
         self.initWebView()
     }
@@ -114,13 +120,7 @@ extension UIColor {
     public required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    func setBaseUrl(type: String) {
-        if type == "individual" {
-            self.baseUrl = "https://verify.synaps.io/"
-        } else if type == "corporate" {
-            self.baseUrl = "https://verify-v3.synaps.io/"
-        }
-    }
+
     public func initWebView() {
         let contentController = WKUserContentController();
         contentController.addUserScript(WKUserScript(source: """
@@ -134,6 +134,7 @@ extension UIColor {
         let webViewConfig = WKWebViewConfiguration()
         webViewConfig.allowsInlineMediaPlayback = true
         webViewConfig.userContentController = contentController
+		webViewConfig.preferences.javaScriptEnabled = true
         self.synaps = WKWebView(frame: self.frame, configuration: webViewConfig)
         self.addSubview(self.synaps)
         self.synaps.translatesAutoresizingMaskIntoConstraints = false
@@ -143,7 +144,7 @@ extension UIColor {
         trailingAnchor.constraint(equalTo: self.synaps.trailingAnchor).isActive = true
     }
     public func redraw(){
-        var url = URL(string:self.baseUrl)
+		var url = baseUrl
         let params = [
             "session_id": self.sessionId,
             "tier": self.tier,
@@ -154,17 +155,18 @@ extension UIColor {
         ]
         for (key, val) in params {
             if val != nil {
-               url?.appendQueryItem(name: key, value: val)
+               url.appendQueryItem(name: key, value: val)
             }
         }
         if (url != nil) && (self.sessionId != nil) {
-            self.synaps.load(URLRequest(url: url!))
+            self.synaps.load(URLRequest(url: url))
         }
     }
     public func setSessionId(sessionId: String){
         self.sessionId = sessionId
     }
 }
+
 @objcMembers public class UISynapsIndividual: UISynaps {
     public  override init(frame: CGRect){
         let sh =  CustomScript()
