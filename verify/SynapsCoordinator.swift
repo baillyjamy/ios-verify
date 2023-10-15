@@ -53,8 +53,6 @@ public class SynapsCoordinator: NSObject {
                 return
             }
 
-            // self.apdu = Optional.none
-
             let responseApdu = try await self.sendCommand(tag: tag, message)
             DispatchQueue.main.async {
                 self.sendToWebviewResponseApdu(responseApdu)
@@ -63,7 +61,7 @@ public class SynapsCoordinator: NSObject {
     }
 
     func resetReaderSession(tag: NFCISO7816Tag) async throws -> Bool {
-        print(nfcTag?.initialSelectedAID ?? "empty")
+        print(nfcTag?.initialSelectedAID ?? "")
         let selectCommand = NFCISO7816APDU(instructionClass: 0x00, instructionCode: 0xA4, p1Parameter: 0x00, p2Parameter: 0x00, data: Data(), expectedResponseLength: 256)
 
         print("before reset")
@@ -80,9 +78,7 @@ public class SynapsCoordinator: NSObject {
     private func cleanupReaderSession() {
         if !finished {
             finished = true
-            //sendRequestApduToTag("")
             self.apduContinuation = Optional.none
-            // self.apdu = Optional.none
             DispatchQueue.main.async {
                 self.readerSession?.invalidate()
                 self.sendWebviewMessage("window.__verify_ios_tag_disconnected()")
@@ -91,34 +87,14 @@ public class SynapsCoordinator: NSObject {
     }
 
     func sendRequestApduToTag(_ newApdu: String) {
-        /*
         if let continuation = apduContinuation {
-            // apduContinuation = Optional.none
             continuation.resume(returning: newApdu)
-        }
-         */
-
-        if let continuation = apduContinuation {
-            apduContinuation = Optional.none
-            continuation.resume(returning: newApdu)
-        } else {
-            apdu = newApdu
         }
     }
 
     func waitForApduFromApi() async -> String {
-        /*
         return await withCheckedContinuation { (continuation: CheckedContinuation<String, Never>) in
             apduContinuation = continuation
-        }
-        */
-        if let existingMessage = apdu {
-            apdu = Optional.none
-            return existingMessage
-        } else {
-            return await withCheckedContinuation { (continuation: CheckedContinuation<String, Never>) in
-                apduContinuation = continuation
-            }
         }
     }
 

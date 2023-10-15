@@ -52,8 +52,9 @@ public struct SynapsView: UIViewRepresentable {
 		webViewConfig.userContentController = contentController
 		webViewConfig.defaultWebpagePreferences.allowsContentJavaScript = true
 
-
 		let webView = WKWebView(frame: .zero, configuration: webViewConfig)
+        webView.translatesAutoresizingMaskIntoConstraints = false
+
 		let request = prepareRequest()
 		webView.load(request)
 		webView.uiDelegate = delegate
