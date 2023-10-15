@@ -204,7 +204,10 @@ extension SynapsCoordinator: NFCTagReaderSessionDelegate {
                         }
                     }
                 } catch let error {
-                    print("Error while reading session: \(error)")
+                    if (Synaps.shared.debug) {
+                        Synaps.logger.error("Error while reading session: \(error)")
+                    }
+                    session.invalidate(errorMessage: "Connection error. Please try again.")
                     self.cleanupReaderSession()
                 }
             }

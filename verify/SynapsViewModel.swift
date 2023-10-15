@@ -9,8 +9,6 @@ import Combine
 
 @available(iOS 15.0, *)
 @MainActor class SynapsViewModel : ObservableObject {
-	//@Published var ready = false
-
     var onReady: (() -> Void)? = nil
 	var onFinished: (() -> Void)? = nil
 	var onMessage: ((String) -> Void)? = nil

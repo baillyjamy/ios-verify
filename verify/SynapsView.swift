@@ -16,14 +16,14 @@ public struct SynapsView: UIViewRepresentable {
 	@ObservedObject internal var viewModel = SynapsViewModel()
 
 	@Binding var sessionId: String
-	let lang: VerifyLang
+	let lang: SynapsLang
 	let tierIdentifier: String?
 
 	let delegate = SynapsWebViewDelegate()
 
 	public init(
 		sessionId: Binding<String>,
-		lang: VerifyLang = .English,
+		lang: SynapsLang = .English,
 		tier tierIdentifier: String? = nil
 	) {
 		self._sessionId = sessionId
