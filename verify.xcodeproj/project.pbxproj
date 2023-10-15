@@ -14,8 +14,9 @@
 		16A9BBEB283E686D0095A38C /* verify.h in Headers */ = {isa = PBXBuildFile; fileRef = 16A9BBDD283E686D0095A38C /* verify.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		16A9BC1F2840E4FE0095A38C /* Synaps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A9BC1E2840E4FE0095A38C /* Synaps.swift */; };
 		773CE24A2A76F211005AF303 /* SynapsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773CE2482A76F211005AF303 /* SynapsViewModel.swift */; };
+		7753B5982AC995F100F263C4 /* SynapsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7753B5972AC995F100F263C4 /* SynapsCoordinator.swift */; };
+		7753B59A2AC9979000F263C4 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7753B5992AC9979000F263C4 /* Data.swift */; };
 		778BF4922A6AA4D100C53165 /* SynapsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778BF4912A6AA4D100C53165 /* SynapsView.swift */; };
-		779737842A86610100B41CFF /* SynapsScriptHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779737832A86610100B41CFF /* SynapsScriptHandler.swift */; };
 		779737862A86618600B41CFF /* SynapsListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779737852A86618600B41CFF /* SynapsListener.swift */; };
 		779737882A8661F300B41CFF /* SynapsWebViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779737872A8661F300B41CFF /* SynapsWebViewDelegate.swift */; };
 		7797378B2A8662C700B41CFF /* URLRequestExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7797378A2A8662C700B41CFF /* URLRequestExtension.swift */; };
@@ -43,8 +44,9 @@
 		16A9BBE9283E686D0095A38C /* verifyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = verifyTests.swift; sourceTree = "<group>"; };
 		16A9BC1E2840E4FE0095A38C /* Synaps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Synaps.swift; sourceTree = "<group>"; };
 		773CE2482A76F211005AF303 /* SynapsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SynapsViewModel.swift; sourceTree = "<group>"; };
+		7753B5972AC995F100F263C4 /* SynapsCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SynapsCoordinator.swift; sourceTree = "<group>"; };
+		7753B5992AC9979000F263C4 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		778BF4912A6AA4D100C53165 /* SynapsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynapsView.swift; sourceTree = "<group>"; };
-		779737832A86610100B41CFF /* SynapsScriptHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynapsScriptHandler.swift; sourceTree = "<group>"; };
 		779737852A86618600B41CFF /* SynapsListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynapsListener.swift; sourceTree = "<group>"; };
 		779737872A8661F300B41CFF /* SynapsWebViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynapsWebViewDelegate.swift; sourceTree = "<group>"; };
 		7797378A2A8662C700B41CFF /* URLRequestExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRequestExtension.swift; sourceTree = "<group>"; };
@@ -103,9 +105,9 @@
 				16A9BBDE283E686D0095A38C /* verify.docc */,
 				16A9BC1E2840E4FE0095A38C /* Synaps.swift */,
 				778BF4912A6AA4D100C53165 /* SynapsView.swift */,
+				7753B5972AC995F100F263C4 /* SynapsCoordinator.swift */,
 				773CE2482A76F211005AF303 /* SynapsViewModel.swift */,
 				779737852A86618600B41CFF /* SynapsListener.swift */,
-				779737832A86610100B41CFF /* SynapsScriptHandler.swift */,
 				779737872A8661F300B41CFF /* SynapsWebViewDelegate.swift */,
 				7797378E2A8665F400B41CFF /* SynapsError.swift */,
 			);
@@ -124,6 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				7797378A2A8662C700B41CFF /* URLRequestExtension.swift */,
+				7753B5992AC9979000F263C4 /* Data.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -243,7 +246,8 @@
 				16A9BBDF283E686D0095A38C /* verify.docc in Sources */,
 				166EED3F284761C200B942F7 /* UISynaps.swift in Sources */,
 				778BF4922A6AA4D100C53165 /* SynapsView.swift in Sources */,
-				779737842A86610100B41CFF /* SynapsScriptHandler.swift in Sources */,
+				7753B59A2AC9979000F263C4 /* Data.swift in Sources */,
+				7753B5982AC995F100F263C4 /* SynapsCoordinator.swift in Sources */,
 				773CE24A2A76F211005AF303 /* SynapsViewModel.swift in Sources */,
 				7797378F2A8665F400B41CFF /* SynapsError.swift in Sources */,
 				779737862A86618600B41CFF /* SynapsListener.swift in Sources */,

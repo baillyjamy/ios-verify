@@ -6,18 +6,26 @@
 //
 
 import Foundation
+import os
 
-internal class Synaps {
-	static let baseEndpoint = "https://verify.synaps.io/"
-	static let baseDevEndpoint = "https://verify-git-riwan-nfc-synaps-hub.vercel.app"
-	static let baseDevEndpointRaphael = "https://verify-git-raphael-nfc-synaps-hub.vercel.app"
-	static let baseUrl = URL(string: baseDevEndpointRaphael)!
+public class Synaps {
+	internal static let baseEndpoint = "https://verify.synaps.io/"
+    internal static let baseEndpointTest = "https://verify.dev.synaps.run"
+	internal static let baseUrl = URL(string: baseEndpointTest)!
 
-	static let messageHandlerJavascript = """
+	internal static let messageHandlerJavascript = """
 		window.addEventListener("message", ({ data }) => {
 			window.webkit.messageHandlers.synaps.postMessage(data.type)
 		});
 	"""
+
+    public static let shared = Synaps()
+
+    public var debug: Bool = false
+    internal static let logger = Logger(
+        subsystem: Bundle.main.bundleIdentifier!,
+        category: String(describing: Synaps.self)
+    )
 }
 
 public enum VerifyLang {

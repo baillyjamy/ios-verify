@@ -74,7 +74,6 @@ public struct SynapsView: UIViewRepresentable {
 		let params = [
 			"session_id": sessionId,
 			"lang": lang.code,
-			//"tier": tierIdentifier,
 			"platform": "ios"
 		]
 
