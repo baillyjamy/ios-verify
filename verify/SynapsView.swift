@@ -79,7 +79,6 @@ public struct SynapsView: UIViewRepresentable {
 		]
 
 		request.append(parameters: params)
-		print(request)
 		return request
 	}
 

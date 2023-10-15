@@ -22,7 +22,6 @@ public class SynapsCoordinator: NSObject {
 
 	private var finished: Bool = false
 	private var apduContinuation: CheckedContinuation<String, Never>? = Optional.none
-	private var apdu: String? = Optional.none
 
 	private var step: String?
 	private var cursor: Int = 0
@@ -40,7 +39,6 @@ public class SynapsCoordinator: NSObject {
     func startTagReading(tag: NFCISO7816Tag) async throws {
         self.finished = false
 
-        print("Sending connected")
         DispatchQueue.main.async {
             self.sendWebviewMessage("window.__verify_ios_tag_connected()")
         }
@@ -49,7 +47,6 @@ public class SynapsCoordinator: NSObject {
             let message = await waitForApduFromApi()
 
             if finished {
-                print("Finished")
                 return
             }
 
@@ -61,17 +58,23 @@ public class SynapsCoordinator: NSObject {
     }
 
     func resetReaderSession(tag: NFCISO7816Tag) async throws -> Bool {
-        print(nfcTag?.initialSelectedAID ?? "")
-        let selectCommand = NFCISO7816APDU(instructionClass: 0x00, instructionCode: 0xA4, p1Parameter: 0x00, p2Parameter: 0x00, data: Data(), expectedResponseLength: 256)
+        let selectCommand = NFCISO7816APDU(
+            instructionClass: 0x00,
+            instructionCode: 0xA4,
+            p1Parameter: 0x00,
+            p2Parameter: 0x00,
+            data: Data(),
+            expectedResponseLength: 256
+        )
 
-        print("before reset")
         let (_, sw1, sw2) = try await tag.sendCommand(apdu: selectCommand)
         if sw1 == 0x90 && sw2 == 0x00 {
             return true
         }
-        print("after reset")
 
-        print("Session reset failed. SW: \(String(format: "%02X", sw1))\(String(format: "%02X", sw2))")
+        if (Synaps.shared.debug) {
+            Synaps.logger.error("Session reset failed. SW: \(String(format: "%02X", sw1))\(String(format: "%02X", sw2))")
+        }
         return false
     }
 
@@ -122,7 +125,6 @@ public class SynapsCoordinator: NSObject {
 @available(iOS 15.0, *)
 extension SynapsCoordinator: WKScriptMessageHandler {
 	@MainActor public func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
-		print("LOG: \(message.body)")
         guard message.name == "verify" || message.name == "synaps" else {
             return
         }
@@ -159,12 +161,15 @@ extension SynapsCoordinator: WKScriptMessageHandler {
 
 extension SynapsCoordinator: NFCTagReaderSessionDelegate {
     public func tagReaderSessionDidBecomeActive(_ session: NFCTagReaderSession) {
-        print("tagReaderSessionDidBecomeActive")
+        if (Synaps.shared.debug) {
+            Synaps.logger.info("tagReaderSessionDidBecomeActive")
+        }
     }
 
     public func tagReaderSession(_ session: NFCTagReaderSession, didInvalidateWithError error: Error) {
-        print("Error while reading tag")
-        print(error)
+        if (Synaps.shared.debug) {
+            Synaps.logger.error("Error while reading tag: \(error)")
+        }
         cleanupReaderSession()
     }
 
@@ -184,12 +189,13 @@ extension SynapsCoordinator: NFCTagReaderSessionDelegate {
             case let .iso7816(tag):
                 self.nfcTag = tag
             default:
-                print("Invalid tag type")
+                if (Synaps.shared.debug) {
+                    Synaps.logger.warning("Invalid tag type")
+                }
                 return
             }
 
             Task { [nfcTag = self.nfcTag] in
-                print("tag read")
                 do {
                     session.connect(to: tag) { (error: Error?) in
                         if error != nil {
@@ -219,7 +225,9 @@ extension SynapsCoordinator: SynapsNfcEvent {
     func nfcStart() {
         guard NFCNDEFReaderSession.readingAvailable else {
             // TODO: Handle the error (send a message to the webview)
-            print("Reading unavailable")
+            if (Synaps.shared.debug) {
+                Synaps.logger.error("Reading unavailable")
+            }
             return
         }
 
