@@ -7,23 +7,21 @@
 
 import SwiftUI
 import WebKit
-import Foundation
-import Combine
 import AVFoundation
 
 @available(iOS 15.0, *)
-public struct SynapsView: UIViewRepresentable {
-	@ObservedObject internal var viewModel = SynapsViewModel()
-
+public struct SynapsView: UIViewRepresentable, VerifyWebView {
 	@Binding var sessionId: String
-	let lang: SynapsLang
+	let lang: VerifyLang
 	let tierIdentifier: String?
 
-	let delegate = SynapsWebViewDelegate()
+    let coordinator = SynapsCoordinator()
+	let webViewDelegate = SynapsWebViewDelegate()
+    internal var viewModel = SynapsViewModel()
 
 	public init(
 		sessionId: Binding<String>,
-		lang: SynapsLang = .English,
+		lang: VerifyLang = .English,
 		tier tierIdentifier: String? = nil
 	) {
 		self._sessionId = sessionId
@@ -31,71 +29,25 @@ public struct SynapsView: UIViewRepresentable {
 		self.tierIdentifier = tierIdentifier
 	}
 
-	public func makeUIView(context: Context)  -> WKWebView {
+	public func makeUIView(context: Context) -> WKWebView {
 		if AVCaptureDevice.authorizationStatus(for: .video) != .authorized {
-			fatalError(SynapsError.permissionDenied.localizedDescription)
+			fatalError(VerifyError.permissionDenied.localizedDescription)
 		}
-
-		let contentController = WKUserContentController();
-		contentController.addUserScript(
-			WKUserScript(
-				source: Synaps.messageHandlerJavascript,
-				injectionTime: WKUserScriptInjectionTime.atDocumentStart,
-				forMainFrameOnly: false
-			)
-		)
-		contentController.add(context.coordinator, name: "synaps")
-        contentController.add(context.coordinator, name: "verify")
-
-		let webViewConfig = WKWebViewConfiguration()
-		webViewConfig.allowsInlineMediaPlayback = true
-		webViewConfig.userContentController = contentController
-		webViewConfig.defaultWebpagePreferences.allowsContentJavaScript = true
-
-		let webView = WKWebView(frame: .zero, configuration: webViewConfig)
-        webView.translatesAutoresizingMaskIntoConstraints = false
-
-		let request = prepareRequest()
-		webView.load(request)
-		webView.uiDelegate = delegate
-		if #available(iOS 16.4, *) {
-			webView.isInspectable = true
-		}
-		viewModel.onMessage = { message in
-			webView.evaluateJavaScript(message)
-		}
+        coordinator.delegate = self
+        let webView = createWebView(frame: .zero, sessionId: sessionId, lang: lang)
 		return webView
 	}
 
 	public func updateUIView(_ webView: WKWebView, context: Context) {
 	}
 
-	func prepareRequest() -> URLRequest {
-		var request = URLRequest(url: Synaps.baseUrl)
-		let params = [
-			"session_id": sessionId,
-			"lang": lang.code,
-			"platform": "ios"
-		]
+    public func onReady(perform action: (() -> Void)?) -> Self {
+        self.viewModel.onReady = action
+        return self
+    }
 
-		request.append(parameters: params)
-		return request
-	}
-
-	public func makeCoordinator() -> SynapsCoordinator {
-		SynapsCoordinator(self)
-	}
-}
-
-@available(iOS 15.0, *)
-extension SynapsView: SynapsListener {
-	public func onReady(perform action: (() -> Void)?) -> Self {
-		viewModel.onReady = action
-		return self
-	}
-
-	public func onFinished(perform action: (() -> Void)?) -> SynapsView {
-		viewModel.onFinished = action
-		return self
-	}
+    public func onFinished(perform action: (() -> Void)?) -> Self {
+        self.viewModel.onFinished = action
+        return self
+    }
 }

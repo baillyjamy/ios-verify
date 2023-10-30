@@ -8,10 +8,8 @@
 import Combine
 
 @available(iOS 15.0, *)
-@MainActor class SynapsViewModel : ObservableObject {
+class SynapsViewModel : ObservableObject {
     var onReady: (() -> Void)? = nil
 	var onFinished: (() -> Void)? = nil
 	var onMessage: ((String) -> Void)? = nil
-	
-	var anyCancellables = Set<AnyCancellable>()
 }

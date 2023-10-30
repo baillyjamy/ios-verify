@@ -1,11 +1,11 @@
 //
-//  SynapsLang.swift
+//  VerifyLang.swift
 //  verify
 //
 //  Created by Jamy Bailly on 15/10/2023.
 //
 
-public enum SynapsLang {
+public enum VerifyLang {
     case English
     case French
     case German

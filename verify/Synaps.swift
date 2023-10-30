@@ -15,7 +15,7 @@ public class Synaps {
 
 	internal static let messageHandlerJavascript = """
 		window.addEventListener("message", ({ data }) => {
-			window.webkit.messageHandlers.synaps.postMessage(data.type)
+			window.webkit.messageHandlers.verify.postMessage(data.type)
 		});
 	"""
 

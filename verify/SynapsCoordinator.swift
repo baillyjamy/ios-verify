@@ -30,11 +30,7 @@ public class SynapsCoordinator: NSObject {
 
 	private var nfcTag: NFCISO7816Tag? = nil
 
-	var parent: SynapsView
-
-	internal init(_ parent: SynapsView) {
-		self.parent = parent
-	}
+    var delegate: VerifyDelegate? = nil
 
     func startTagReading(tag: NFCISO7816Tag) async throws {
         self.finished = false
@@ -58,6 +54,13 @@ public class SynapsCoordinator: NSObject {
     }
 
     func resetReaderSession(tag: NFCISO7816Tag) async throws -> Bool {
+        if let aid = nfcTag?.initialSelectedAID {
+            print("aid:")
+            print(aid)
+        } else {
+            print("yolo")
+        }
+        
         let selectCommand = NFCISO7816APDU(
             instructionClass: 0x00,
             instructionCode: 0xA4,
@@ -117,27 +120,30 @@ public class SynapsCoordinator: NSObject {
 
     private func sendWebviewMessage(_ cmd: String) {
         DispatchQueue.main.async {
-            self.parent.viewModel.onMessage?(cmd)
+            self.delegate?.onMessage(cmd)
         }
     }
 }
 
 @available(iOS 15.0, *)
 extension SynapsCoordinator: WKScriptMessageHandler {
-	@MainActor public func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
-        guard message.name == "verify" || message.name == "synaps" else {
+	public func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
+        guard message.name == "verify" else {
             return
         }
+        print("LOG :\(message.body)")
         if let body = message.body as? String {
+            // print("LOG :\(body)")
             switch body {
             case "ready":
-                parent.viewModel.onReady?()
+                delegate?.onReady()
             case "finish":
-                parent.viewModel.onFinished?()
+                delegate?.onFinished()
             default:
                 break
             }
         } else if let body = message.body as? [String: AnyObject] {
+            // print("LOG :\(body)")
             guard let type = body["type"] as? String else {
                 return
             }
@@ -234,6 +240,7 @@ extension SynapsCoordinator: SynapsNfcEvent {
         if NFCTagReaderSession.readingAvailable {
             readerSession = NFCTagReaderSession(pollingOption: [.iso14443], delegate: self, queue: nil)
             readerSession?.alertMessage = "Hold your iPhone near the item to learn more about it."
+            print("NFC ready ? : \(NFCTagReaderSession.readingAvailable)")
             readerSession?.begin()
         }
     }
