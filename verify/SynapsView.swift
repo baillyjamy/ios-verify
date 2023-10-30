@@ -16,7 +16,7 @@ public struct SynapsView: UIViewRepresentable, VerifyWebView {
 	let tierIdentifier: String?
 
     let coordinator = SynapsCoordinator()
-	let webViewDelegate = SynapsWebViewDelegate()
+	let webViewDelegate = VerifyWebViewDelegate()
     internal var viewModel = SynapsViewModel()
 
 	public init(
@@ -34,7 +34,7 @@ public struct SynapsView: UIViewRepresentable, VerifyWebView {
 			fatalError(VerifyError.permissionDenied.localizedDescription)
 		}
         coordinator.delegate = self
-        let webView = createWebView(frame: .zero, sessionId: sessionId, lang: lang)
+        let webView = createWebView(frame: .zero, sessionId: sessionId, lang: lang, tierIdentifier: tierIdentifier)
 		return webView
 	}
 

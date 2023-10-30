@@ -17,14 +17,14 @@ internal protocol VerifyDelegate {
 protocol VerifyWebView: VerifyDelegate {
     var coordinator: SynapsCoordinator { get }
     var viewModel: SynapsViewModel { get }
-    var webViewDelegate: SynapsWebViewDelegate { get }
-    func prepareRequest(sessionId: String, lang: VerifyLang) -> URLRequest
+    var webViewDelegate: VerifyWebViewDelegate { get }
+    func prepareRequest(sessionId: String, lang: VerifyLang, tierIdentifier: String?) -> URLRequest
 }
 
 extension VerifyWebView {
-    func createWebView(frame: CGRect, sessionId: String, lang: VerifyLang) -> WKWebView {
+    func createWebView(frame: CGRect, sessionId: String, lang: VerifyLang, tierIdentifier: String?) -> WKWebView {
         let webView = WKWebView(frame: frame, configuration: createWebViewConfiguration())
-        let request = prepareRequest(sessionId: sessionId, lang: lang)
+        let request = prepareRequest(sessionId: sessionId, lang: lang, tierIdentifier: tierIdentifier)
         webView.load(request)
         webView.uiDelegate = webViewDelegate
         webView.isOpaque = false
@@ -39,12 +39,13 @@ extension VerifyWebView {
         return webView
     }
 
-    func prepareRequest(sessionId: String, lang: VerifyLang) -> URLRequest {
+    func prepareRequest(sessionId: String, lang: VerifyLang, tierIdentifier: String?) -> URLRequest {
         var request = URLRequest(url: Synaps.baseUrl)
         let params = [
             "session_id": sessionId,
             "lang": lang.code,
-            "platform": "ios"
+            "platform": "ios",
+            "tier": tierIdentifier
         ]
 
         request.append(parameters: params)

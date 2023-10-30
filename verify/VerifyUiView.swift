@@ -13,7 +13,7 @@ import AVFoundation
 public class VerifyUiView: UIView, VerifyWebView {
     var webView: WKWebView!
     let coordinator = SynapsCoordinator()
-    let webViewDelegate = SynapsWebViewDelegate()
+    let webViewDelegate = VerifyWebViewDelegate()
     internal var viewModel = SynapsViewModel()
 
     override init(frame: CGRect) {
@@ -22,15 +22,14 @@ public class VerifyUiView: UIView, VerifyWebView {
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        //fatalError("init(coder:) has not been implemented")
     }
 
-    public func startSession(sessionId: String, lang: VerifyLang) {
+    public func startSession(sessionId: String, lang: VerifyLang, tier tierIdentifier: String? = nil) {
         if AVCaptureDevice.authorizationStatus(for: .video) != .authorized {
             fatalError(VerifyError.permissionDenied.localizedDescription)
         }
         coordinator.delegate = self
-        webView = createWebView(frame: self.frame, sessionId: sessionId, lang: lang)
+        webView = createWebView(frame: self.frame, sessionId: sessionId, lang: lang, tierIdentifier: tierIdentifier)
         self.addSubview(webView)
         setConstraints()
     }
