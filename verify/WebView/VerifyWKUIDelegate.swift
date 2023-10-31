@@ -1,5 +1,5 @@
 //
-//  VerifyWebViewDelegate.swift
+//  VerifyWKUIDelegate.swift
 //  verify
 //
 //  Created by Jamy Bailly on 11/08/2023.
@@ -8,7 +8,7 @@
 import WebKit
 
 @available(iOS 15.0, *)
-public class VerifyWebViewDelegate: NSObject, WKUIDelegate {
+public class VerifyWKUIDelegate: NSObject, WKUIDelegate {
 	public func webView(
 		_ webView: WKWebView,
 		requestMediaCapturePermissionFor origin: WKSecurityOrigin,

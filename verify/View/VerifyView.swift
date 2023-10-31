@@ -16,7 +16,7 @@ public struct VerifyView: UIViewRepresentable, VerifyWebView {
 	let tierIdentifier: String?
 
     let coordinator = VerifyNfcController()
-	let webViewDelegate = VerifyWebViewDelegate()
+	let webViewDelegate = VerifyWKUIDelegate()
     internal var listener = VerifyListener()
 
 	public init(

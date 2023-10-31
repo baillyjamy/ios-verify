@@ -8,14 +8,6 @@
 import WebKit
 import CoreNFC
 
-protocol VerifyNfcEvent {
-    func nfcStart()
-    func nfcStop()
-    func nfcTransmit(body: [String: AnyObject])
-    func nfcStep(body: [String: AnyObject])
-    func nfcLog(body: [String: AnyObject])
-}
-
 @available(iOS 15.0, *)
 public class VerifyNfcController: NSObject {
 	private var readerSession: NFCTagReaderSession?

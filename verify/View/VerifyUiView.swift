@@ -13,7 +13,7 @@ import AVFoundation
 public class VerifyUiView: UIView, VerifyWebView {
     var webView: WKWebView!
     let coordinator = VerifyNfcController()
-    let webViewDelegate = VerifyWebViewDelegate()
+    let webViewDelegate = VerifyWKUIDelegate()
     internal var listener = VerifyListener()
 
     override init(frame: CGRect) {

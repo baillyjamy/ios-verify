@@ -17,10 +17,12 @@
 		770FD00C2ADC7271002FB641 /* VerifyUiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 770FD00B2ADC7271002FB641 /* VerifyUiView.swift */; };
 		773CE24A2A76F211005AF303 /* VerifyListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773CE2482A76F211005AF303 /* VerifyListener.swift */; };
 		774B43BA2AEF0E670021FA4E /* VerifyWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774B43B92AEF0E670021FA4E /* VerifyWebView.swift */; };
+		774B43BE2AF14E2D0021FA4E /* VerifyNfcEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774B43BD2AF14E2D0021FA4E /* VerifyNfcEvent.swift */; };
+		774B43C12AF14EB40021FA4E /* VerifyWebViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774B43C02AF14EB40021FA4E /* VerifyWebViewDelegate.swift */; };
 		7753B5982AC995F100F263C4 /* VerifyNfcController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7753B5972AC995F100F263C4 /* VerifyNfcController.swift */; };
 		7753B59A2AC9979000F263C4 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7753B5992AC9979000F263C4 /* Data.swift */; };
 		778BF4922A6AA4D100C53165 /* VerifyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778BF4912A6AA4D100C53165 /* VerifyView.swift */; };
-		779737882A8661F300B41CFF /* VerifyWebViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779737872A8661F300B41CFF /* VerifyWebViewDelegate.swift */; };
+		779737882A8661F300B41CFF /* VerifyWKUIDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779737872A8661F300B41CFF /* VerifyWKUIDelegate.swift */; };
 		7797378B2A8662C700B41CFF /* URLRequestExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7797378A2A8662C700B41CFF /* URLRequestExtension.swift */; };
 		7797378F2A8665F400B41CFF /* VerifyError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7797378E2A8665F400B41CFF /* VerifyError.swift */; };
 		779737932A866D6C00B41CFF /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 779737922A866D6C00B41CFF /* README.md */; };
@@ -49,10 +51,12 @@
 		770FD00B2ADC7271002FB641 /* VerifyUiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyUiView.swift; sourceTree = "<group>"; };
 		773CE2482A76F211005AF303 /* VerifyListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerifyListener.swift; sourceTree = "<group>"; };
 		774B43B92AEF0E670021FA4E /* VerifyWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyWebView.swift; sourceTree = "<group>"; };
+		774B43BD2AF14E2D0021FA4E /* VerifyNfcEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyNfcEvent.swift; sourceTree = "<group>"; };
+		774B43C02AF14EB40021FA4E /* VerifyWebViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyWebViewDelegate.swift; sourceTree = "<group>"; };
 		7753B5972AC995F100F263C4 /* VerifyNfcController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerifyNfcController.swift; sourceTree = "<group>"; };
 		7753B5992AC9979000F263C4 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		778BF4912A6AA4D100C53165 /* VerifyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyView.swift; sourceTree = "<group>"; };
-		779737872A8661F300B41CFF /* VerifyWebViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyWebViewDelegate.swift; sourceTree = "<group>"; };
+		779737872A8661F300B41CFF /* VerifyWKUIDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyWKUIDelegate.swift; sourceTree = "<group>"; };
 		7797378A2A8662C700B41CFF /* URLRequestExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRequestExtension.swift; sourceTree = "<group>"; };
 		7797378E2A8665F400B41CFF /* VerifyError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyError.swift; sourceTree = "<group>"; };
 		779737902A866D5400B41CFF /* Package.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
@@ -103,19 +107,14 @@
 		16A9BBDC283E686D0095A38C /* verify */ = {
 			isa = PBXGroup;
 			children = (
+				774B43C22AF1525D0021FA4E /* View */,
+				774B43C32AF152720021FA4E /* Core */,
+				774B43BF2AF14E490021FA4E /* WebView */,
+				774B43BC2AF14E1C0021FA4E /* Nfc */,
 				779737892A8662AE00B41CFF /* Extension */,
 				16A9BBDD283E686D0095A38C /* verify.h */,
 				166EED3E284761C200B942F7 /* UISynaps.swift */,
 				16A9BBDE283E686D0095A38C /* verify.docc */,
-				16A9BC1E2840E4FE0095A38C /* Verify.swift */,
-				778BF4912A6AA4D100C53165 /* VerifyView.swift */,
-				770FD00B2ADC7271002FB641 /* VerifyUiView.swift */,
-				7753B5972AC995F100F263C4 /* VerifyNfcController.swift */,
-				773CE2482A76F211005AF303 /* VerifyListener.swift */,
-				779737872A8661F300B41CFF /* VerifyWebViewDelegate.swift */,
-				7797378E2A8665F400B41CFF /* VerifyError.swift */,
-				770FD0092ADBFD31002FB641 /* VerifyLang.swift */,
-				774B43B92AEF0E670021FA4E /* VerifyWebView.swift */,
 			);
 			path = verify;
 			sourceTree = "<group>";
@@ -126,6 +125,45 @@
 				16A9BBE9283E686D0095A38C /* verifyTests.swift */,
 			);
 			path = verifyTests;
+			sourceTree = "<group>";
+		};
+		774B43BC2AF14E1C0021FA4E /* Nfc */ = {
+			isa = PBXGroup;
+			children = (
+				7753B5972AC995F100F263C4 /* VerifyNfcController.swift */,
+				774B43BD2AF14E2D0021FA4E /* VerifyNfcEvent.swift */,
+			);
+			path = Nfc;
+			sourceTree = "<group>";
+		};
+		774B43BF2AF14E490021FA4E /* WebView */ = {
+			isa = PBXGroup;
+			children = (
+				774B43B92AEF0E670021FA4E /* VerifyWebView.swift */,
+				774B43C02AF14EB40021FA4E /* VerifyWebViewDelegate.swift */,
+				779737872A8661F300B41CFF /* VerifyWKUIDelegate.swift */,
+			);
+			path = WebView;
+			sourceTree = "<group>";
+		};
+		774B43C22AF1525D0021FA4E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				778BF4912A6AA4D100C53165 /* VerifyView.swift */,
+				770FD00B2ADC7271002FB641 /* VerifyUiView.swift */,
+				773CE2482A76F211005AF303 /* VerifyListener.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		774B43C32AF152720021FA4E /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				16A9BC1E2840E4FE0095A38C /* Verify.swift */,
+				7797378E2A8665F400B41CFF /* VerifyError.swift */,
+				770FD0092ADBFD31002FB641 /* VerifyLang.swift */,
+			);
+			path = Core;
 			sourceTree = "<group>";
 		};
 		779737892A8662AE00B41CFF /* Extension */ = {
@@ -248,14 +286,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				779737882A8661F300B41CFF /* VerifyWebViewDelegate.swift in Sources */,
+				779737882A8661F300B41CFF /* VerifyWKUIDelegate.swift in Sources */,
 				16A9BBDF283E686D0095A38C /* verify.docc in Sources */,
 				774B43BA2AEF0E670021FA4E /* VerifyWebView.swift in Sources */,
+				774B43BE2AF14E2D0021FA4E /* VerifyNfcEvent.swift in Sources */,
 				166EED3F284761C200B942F7 /* UISynaps.swift in Sources */,
 				778BF4922A6AA4D100C53165 /* VerifyView.swift in Sources */,
 				7753B59A2AC9979000F263C4 /* Data.swift in Sources */,
 				770FD00C2ADC7271002FB641 /* VerifyUiView.swift in Sources */,
 				7753B5982AC995F100F263C4 /* VerifyNfcController.swift in Sources */,
+				774B43C12AF14EB40021FA4E /* VerifyWebViewDelegate.swift in Sources */,
 				773CE24A2A76F211005AF303 /* VerifyListener.swift in Sources */,
 				7797378F2A8665F400B41CFF /* VerifyError.swift in Sources */,
 				7797378B2A8662C700B41CFF /* URLRequestExtension.swift in Sources */,

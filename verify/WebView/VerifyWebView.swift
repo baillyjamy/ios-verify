@@ -8,16 +8,10 @@
 import Foundation
 import WebKit
 
-internal protocol VerifyDelegate {
-    func onReady()
-    func onFinished()
-    func onMessage(_ message: String)
-}
-
 protocol VerifyWebView: VerifyDelegate {
     var coordinator: VerifyNfcController { get }
     var listener: VerifyListener { get }
-    var webViewDelegate: VerifyWebViewDelegate { get }
+    var webViewDelegate: VerifyWKUIDelegate { get }
     func prepareRequest(sessionId: String, lang: VerifyLang, tierIdentifier: String?) -> URLRequest
 }
 
