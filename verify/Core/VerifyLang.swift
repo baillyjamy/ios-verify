@@ -6,50 +6,50 @@
 //
 
 public enum VerifyLang {
-    case English
-    case French
-    case German
-    case Spanish
-    case Italian
-    case Japanese
-    case Korean
-    case Portuguese
-    case Romanian
-    case Russian
-    case Turkish
-    case Vietnamese
-    case Chinese
-    case ChineseTraditional
+    case english
+    case french
+    case german
+    case spanish
+    case italian
+    case japanese
+    case korean
+    case portuguese
+    case romanian
+    case russian
+    case turkish
+    case vietnamese
+    case chinese
+    case chineseTraditional
 
     var code: String {
         switch self {
-        case .English:
+        case .english:
             return "en"
-        case .French:
+        case .french:
             return "fr"
-        case .German:
+        case .german:
             return "de"
-        case .Spanish:
+        case .spanish:
             return "es"
-        case .Italian:
+        case .italian:
             return "it"
-        case .Japanese:
+        case .japanese:
             return "ja"
-        case .Korean:
+        case .korean:
             return "ko"
-        case .Portuguese:
+        case .portuguese:
             return "pt"
-        case .Romanian:
+        case .romanian:
             return "ro"
-        case .Russian:
+        case .russian:
             return "ru"
-        case .Turkish:
+        case .turkish:
             return "tr"
-        case .Vietnamese:
+        case .vietnamese:
             return "vi"
-        case .Chinese:
+        case .chinese:
             return "zh-CN"
-        case .ChineseTraditional:
+        case .chineseTraditional:
             return "zh-TW"
         }
     }

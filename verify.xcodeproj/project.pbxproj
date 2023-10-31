@@ -19,6 +19,7 @@
 		774B43BA2AEF0E670021FA4E /* VerifyWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774B43B92AEF0E670021FA4E /* VerifyWebView.swift */; };
 		774B43BE2AF14E2D0021FA4E /* VerifyNfcEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774B43BD2AF14E2D0021FA4E /* VerifyNfcEvent.swift */; };
 		774B43C12AF14EB40021FA4E /* VerifyWebViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774B43C02AF14EB40021FA4E /* VerifyWebViewDelegate.swift */; };
+		774B43C82AF1617F0021FA4E /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 774B43C72AF1617F0021FA4E /* .swiftlint.yml */; };
 		7753B5982AC995F100F263C4 /* VerifyNfcController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7753B5972AC995F100F263C4 /* VerifyNfcController.swift */; };
 		7753B59A2AC9979000F263C4 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7753B5992AC9979000F263C4 /* Data.swift */; };
 		778BF4922A6AA4D100C53165 /* VerifyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778BF4912A6AA4D100C53165 /* VerifyView.swift */; };
@@ -53,6 +54,7 @@
 		774B43B92AEF0E670021FA4E /* VerifyWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyWebView.swift; sourceTree = "<group>"; };
 		774B43BD2AF14E2D0021FA4E /* VerifyNfcEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyNfcEvent.swift; sourceTree = "<group>"; };
 		774B43C02AF14EB40021FA4E /* VerifyWebViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyWebViewDelegate.swift; sourceTree = "<group>"; };
+		774B43C72AF1617F0021FA4E /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		7753B5972AC995F100F263C4 /* VerifyNfcController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerifyNfcController.swift; sourceTree = "<group>"; };
 		7753B5992AC9979000F263C4 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		778BF4912A6AA4D100C53165 /* VerifyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyView.swift; sourceTree = "<group>"; };
@@ -86,6 +88,7 @@
 		16A9BBD0283E686D0095A38C = {
 			isa = PBXGroup;
 			children = (
+				774B43C72AF1617F0021FA4E /* .swiftlint.yml */,
 				779737942A866D8E00B41CFF /* SynapsVerify.podspec */,
 				779737922A866D6C00B41CFF /* README.md */,
 				779737902A866D5400B41CFF /* Package.swift */,
@@ -201,6 +204,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				774B43C62AF1605A0021FA4E /* PBXTargetDependency */,
 			);
 			name = verify;
 			productName = verify;
@@ -233,7 +237,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1340;
-				LastUpgradeCheck = 1430;
+				LastUpgradeCheck = 1500;
 				TargetAttributes = {
 					16A9BBD9283E686D0095A38C = {
 						CreatedOnToolsVersion = 13.4;
@@ -252,6 +256,9 @@
 				Base,
 			);
 			mainGroup = 16A9BBD0283E686D0095A38C;
+			packageReferences = (
+				774B43C42AF15FF30021FA4E /* XCRemoteSwiftPackageReference "SwiftLint" */,
+			);
 			productRefGroup = 16A9BBDB283E686D0095A38C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -267,6 +274,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				774B43C82AF1617F0021FA4E /* .swiftlint.yml in Resources */,
 				779737932A866D6C00B41CFF /* README.md in Resources */,
 				779737952A866D8E00B41CFF /* SynapsVerify.podspec in Resources */,
 			);
@@ -320,6 +328,10 @@
 			target = 16A9BBD9283E686D0095A38C /* verify */;
 			targetProxy = 16A9BBE6283E686D0095A38C /* PBXContainerItemProxy */;
 		};
+		774B43C62AF1605A0021FA4E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 774B43C52AF1605A0021FA4E /* SwiftLintPlugin */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
@@ -327,6 +339,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -360,6 +373,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -390,6 +404,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -423,6 +438,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -588,6 +604,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		774B43C42AF15FF30021FA4E /* XCRemoteSwiftPackageReference "SwiftLint" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/SwiftLint.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.53.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		774B43C52AF1605A0021FA4E /* SwiftLintPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 774B43C42AF15FF30021FA4E /* XCRemoteSwiftPackageReference "SwiftLint" */;
+			productName = "plugin:SwiftLintPlugin";
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 16A9BBD1283E686D0095A38C /* Project object */;
 }

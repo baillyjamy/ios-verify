@@ -9,7 +9,7 @@ import Combine
 
 @available(iOS 15.0, *)
 internal class VerifyListener {
-    var onReady: (() -> Void)? = nil
-	var onFinished: (() -> Void)? = nil
-	var onMessage: ((String) -> Void)? = nil
+    var onReady: (() -> Void)?
+	var onFinished: (() -> Void)?
+	var onMessage: ((String) -> Void)?
 }

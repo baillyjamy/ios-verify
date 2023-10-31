@@ -10,19 +10,19 @@ import CoreNFC
 
 @available(iOS 15.0, *)
 public class VerifyNfcController: NSObject {
-	private var readerSession: NFCTagReaderSession?
+    private var readerSession: NFCTagReaderSession?
 
-	private var finished: Bool = false
-	private var apduContinuation: CheckedContinuation<String, Never>? = Optional.none
+    private var finished: Bool = false
+    private var apduContinuation: CheckedContinuation<String, Never>? = Optional.none
 
-	private var step: String?
-	private var cursor: Int = 0
-	private var length: Int = -1
-	private var retry: Int = 0
+    private var step: String?
+    private var cursor: Int = 0
+    private var length: Int = -1
+    private var retry: Int = 0
 
-	private var nfcTag: NFCISO7816Tag? = nil
+    private var nfcTag: NFCISO7816Tag?
 
-    var delegate: VerifyDelegate? = nil
+    var delegate: VerifyDelegate?
 
     func startTagReading(tag: NFCISO7816Tag) async throws {
         self.finished = false
@@ -52,7 +52,7 @@ public class VerifyNfcController: NSObject {
         } else {
             print("yolo")
         }
-        
+
         let selectCommand = NFCISO7816APDU(
             instructionClass: 0x00,
             instructionCode: 0xA4,
@@ -67,7 +67,7 @@ public class VerifyNfcController: NSObject {
             return true
         }
 
-        if (Verify.shared.debug) {
+        if Verify.shared.debug {
             Verify.logger.error("Session reset failed. SW: \(String(format: "%02X", sw1))\(String(format: "%02X", sw2))")
         }
         return false
@@ -119,7 +119,10 @@ public class VerifyNfcController: NSObject {
 
 @available(iOS 15.0, *)
 extension VerifyNfcController: WKScriptMessageHandler {
-	public func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
+    public func userContentController(
+        _ userContentController: WKUserContentController,
+        didReceive message: WKScriptMessage
+    ) {
         guard message.name == "verify" else {
             return
         }
@@ -154,18 +157,18 @@ extension VerifyNfcController: WKScriptMessageHandler {
                 break
             }
         }
-	}
+    }
 }
 
 extension VerifyNfcController: NFCTagReaderSessionDelegate {
     public func tagReaderSessionDidBecomeActive(_ session: NFCTagReaderSession) {
-        if (Verify.shared.debug) {
+        if Verify.shared.debug {
             Verify.logger.info("tagReaderSessionDidBecomeActive")
         }
     }
 
     public func tagReaderSession(_ session: NFCTagReaderSession, didInvalidateWithError error: Error) {
-        if (Verify.shared.debug) {
+        if Verify.shared.debug {
             Verify.logger.error("Error while reading tag: \(error)")
         }
         cleanupReaderSession()
@@ -187,7 +190,7 @@ extension VerifyNfcController: NFCTagReaderSessionDelegate {
             case let .iso7816(tag):
                 self.nfcTag = tag
             default:
-                if (Verify.shared.debug) {
+                if Verify.shared.debug {
                     Verify.logger.warning("Invalid tag type")
                 }
                 return
@@ -208,7 +211,7 @@ extension VerifyNfcController: NFCTagReaderSessionDelegate {
                         }
                     }
                 } catch let error {
-                    if (Verify.shared.debug) {
+                    if Verify.shared.debug {
                         Verify.logger.error("Error while reading session: \(error)")
                     }
                     session.invalidate(errorMessage: "Connection error. Please try again.")
@@ -222,8 +225,7 @@ extension VerifyNfcController: NFCTagReaderSessionDelegate {
 extension VerifyNfcController: VerifyNfcEvent {
     func nfcStart() {
         guard NFCNDEFReaderSession.readingAvailable else {
-            // TODO: Handle the error (send a message to the webview)
-            if (Verify.shared.debug) {
+            if Verify.shared.debug {
                 Verify.logger.error("Reading unavailable")
             }
             return
@@ -273,8 +275,8 @@ extension VerifyNfcController: VerifyNfcEvent {
         }
     }
 
-    func nfcLog(body: [String : AnyObject]) {
-        if (Verify.shared.debug) {
+    func nfcLog(body: [String: AnyObject]) {
+        if Verify.shared.debug {
             Verify.logger.debug("\(body)")
         }
     }

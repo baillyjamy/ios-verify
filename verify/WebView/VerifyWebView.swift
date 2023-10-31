@@ -51,7 +51,7 @@ extension VerifyWebView {
         webViewConfig.allowsInlineMediaPlayback = true
         webViewConfig.defaultWebpagePreferences.allowsContentJavaScript = true
 
-        let contentController = WKUserContentController();
+        let contentController = WKUserContentController()
         contentController.addUserScript(
             WKUserScript(
                 source: Verify.messageHandlerJavascript,

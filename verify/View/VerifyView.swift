@@ -21,7 +21,7 @@ public struct VerifyView: UIViewRepresentable, VerifyWebView {
 
 	public init(
 		sessionId: Binding<String>,
-		lang: VerifyLang = .English,
+		lang: VerifyLang = .english,
 		tier tierIdentifier: String? = nil
 	) {
 		self._sessionId = sessionId
