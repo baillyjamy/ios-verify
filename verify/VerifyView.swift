@@ -1,5 +1,5 @@
 //
-//  SynapsView.swift
+//  VerifyView.swift
 //  verify
 //
 //  Created by Jamy Bailly on 21/07/2023.
@@ -10,14 +10,14 @@ import WebKit
 import AVFoundation
 
 @available(iOS 15.0, *)
-public struct SynapsView: UIViewRepresentable, VerifyWebView {
+public struct VerifyView: UIViewRepresentable, VerifyWebView {
 	@Binding var sessionId: String
 	let lang: VerifyLang
 	let tierIdentifier: String?
 
-    let coordinator = SynapsCoordinator()
+    let coordinator = VerifyNfcController()
 	let webViewDelegate = VerifyWebViewDelegate()
-    internal var viewModel = SynapsViewModel()
+    internal var listener = VerifyListener()
 
 	public init(
 		sessionId: Binding<String>,
@@ -42,12 +42,12 @@ public struct SynapsView: UIViewRepresentable, VerifyWebView {
 	}
 
     public func onReady(perform action: (() -> Void)?) -> Self {
-        self.viewModel.onReady = action
+        self.listener.onReady = action
         return self
     }
 
     public func onFinished(perform action: (() -> Void)?) -> Self {
-        self.viewModel.onFinished = action
+        self.listener.onFinished = action
         return self
     }
 }

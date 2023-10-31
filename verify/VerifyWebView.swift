@@ -15,8 +15,8 @@ internal protocol VerifyDelegate {
 }
 
 protocol VerifyWebView: VerifyDelegate {
-    var coordinator: SynapsCoordinator { get }
-    var viewModel: SynapsViewModel { get }
+    var coordinator: VerifyNfcController { get }
+    var listener: VerifyListener { get }
     var webViewDelegate: VerifyWebViewDelegate { get }
     func prepareRequest(sessionId: String, lang: VerifyLang, tierIdentifier: String?) -> URLRequest
 }
@@ -33,14 +33,14 @@ extension VerifyWebView {
         if #available(iOS 16.4, *) {
             webView.isInspectable = true
         }
-        viewModel.onMessage = { message in
+        listener.onMessage = { message in
             webView.evaluateJavaScript(message)
         }
         return webView
     }
 
     func prepareRequest(sessionId: String, lang: VerifyLang, tierIdentifier: String?) -> URLRequest {
-        var request = URLRequest(url: Synaps.baseUrl)
+        var request = URLRequest(url: Verify.baseUrl)
         let params = [
             "session_id": sessionId,
             "lang": lang.code,
@@ -60,7 +60,7 @@ extension VerifyWebView {
         let contentController = WKUserContentController();
         contentController.addUserScript(
             WKUserScript(
-                source: Synaps.messageHandlerJavascript,
+                source: Verify.messageHandlerJavascript,
                 injectionTime: WKUserScriptInjectionTime.atDocumentStart,
                 forMainFrameOnly: false
             )
@@ -71,14 +71,14 @@ extension VerifyWebView {
     }
 
     internal func onReady() {
-        viewModel.onReady?()
+        listener.onReady?()
     }
 
     internal func onFinished() {
-        viewModel.onFinished?()
+        listener.onFinished?()
     }
 
     internal func onMessage(_ message: String) {
-        viewModel.onMessage?(message)
+        listener.onMessage?(message)
     }
 }

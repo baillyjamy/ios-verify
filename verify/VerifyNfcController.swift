@@ -1,5 +1,5 @@
 //
-//  SynapsCoordinator.swift
+//  VerifyNFCController.swift
 //  verify
 //
 //  Created by Jamy Bailly on 11/08/2023.
@@ -8,7 +8,7 @@
 import WebKit
 import CoreNFC
 
-protocol SynapsNfcEvent {
+protocol VerifyNfcEvent {
     func nfcStart()
     func nfcStop()
     func nfcTransmit(body: [String: AnyObject])
@@ -17,7 +17,7 @@ protocol SynapsNfcEvent {
 }
 
 @available(iOS 15.0, *)
-public class SynapsCoordinator: NSObject {
+public class VerifyNfcController: NSObject {
 	private var readerSession: NFCTagReaderSession?
 
 	private var finished: Bool = false
@@ -75,8 +75,8 @@ public class SynapsCoordinator: NSObject {
             return true
         }
 
-        if (Synaps.shared.debug) {
-            Synaps.logger.error("Session reset failed. SW: \(String(format: "%02X", sw1))\(String(format: "%02X", sw2))")
+        if (Verify.shared.debug) {
+            Verify.logger.error("Session reset failed. SW: \(String(format: "%02X", sw1))\(String(format: "%02X", sw2))")
         }
         return false
     }
@@ -126,7 +126,7 @@ public class SynapsCoordinator: NSObject {
 }
 
 @available(iOS 15.0, *)
-extension SynapsCoordinator: WKScriptMessageHandler {
+extension VerifyNfcController: WKScriptMessageHandler {
 	public func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         guard message.name == "verify" else {
             return
@@ -165,16 +165,16 @@ extension SynapsCoordinator: WKScriptMessageHandler {
 	}
 }
 
-extension SynapsCoordinator: NFCTagReaderSessionDelegate {
+extension VerifyNfcController: NFCTagReaderSessionDelegate {
     public func tagReaderSessionDidBecomeActive(_ session: NFCTagReaderSession) {
-        if (Synaps.shared.debug) {
-            Synaps.logger.info("tagReaderSessionDidBecomeActive")
+        if (Verify.shared.debug) {
+            Verify.logger.info("tagReaderSessionDidBecomeActive")
         }
     }
 
     public func tagReaderSession(_ session: NFCTagReaderSession, didInvalidateWithError error: Error) {
-        if (Synaps.shared.debug) {
-            Synaps.logger.error("Error while reading tag: \(error)")
+        if (Verify.shared.debug) {
+            Verify.logger.error("Error while reading tag: \(error)")
         }
         cleanupReaderSession()
     }
@@ -195,8 +195,8 @@ extension SynapsCoordinator: NFCTagReaderSessionDelegate {
             case let .iso7816(tag):
                 self.nfcTag = tag
             default:
-                if (Synaps.shared.debug) {
-                    Synaps.logger.warning("Invalid tag type")
+                if (Verify.shared.debug) {
+                    Verify.logger.warning("Invalid tag type")
                 }
                 return
             }
@@ -216,8 +216,8 @@ extension SynapsCoordinator: NFCTagReaderSessionDelegate {
                         }
                     }
                 } catch let error {
-                    if (Synaps.shared.debug) {
-                        Synaps.logger.error("Error while reading session: \(error)")
+                    if (Verify.shared.debug) {
+                        Verify.logger.error("Error while reading session: \(error)")
                     }
                     session.invalidate(errorMessage: "Connection error. Please try again.")
                     self.cleanupReaderSession()
@@ -227,12 +227,12 @@ extension SynapsCoordinator: NFCTagReaderSessionDelegate {
     }
 }
 
-extension SynapsCoordinator: SynapsNfcEvent {
+extension VerifyNfcController: VerifyNfcEvent {
     func nfcStart() {
         guard NFCNDEFReaderSession.readingAvailable else {
             // TODO: Handle the error (send a message to the webview)
-            if (Synaps.shared.debug) {
-                Synaps.logger.error("Reading unavailable")
+            if (Verify.shared.debug) {
+                Verify.logger.error("Reading unavailable")
             }
             return
         }
@@ -282,8 +282,8 @@ extension SynapsCoordinator: SynapsNfcEvent {
     }
 
     func nfcLog(body: [String : AnyObject]) {
-        if (Synaps.shared.debug) {
-            Synaps.logger.debug("\(body)")
+        if (Verify.shared.debug) {
+            Verify.logger.debug("\(body)")
         }
     }
 }

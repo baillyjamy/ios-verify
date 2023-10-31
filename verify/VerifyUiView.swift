@@ -12,9 +12,9 @@ import AVFoundation
 @available(iOS 15.0, *)
 public class VerifyUiView: UIView, VerifyWebView {
     var webView: WKWebView!
-    let coordinator = SynapsCoordinator()
+    let coordinator = VerifyNfcController()
     let webViewDelegate = VerifyWebViewDelegate()
-    internal var viewModel = SynapsViewModel()
+    internal var listener = VerifyListener()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -43,10 +43,10 @@ public class VerifyUiView: UIView, VerifyWebView {
     }
 
     public func onReady(perform action: (() -> Void)?) {
-        self.viewModel.onReady = action
+        self.listener.onReady = action
     }
 
     public func onFinished(perform action: (() -> Void)?) {
-        self.viewModel.onFinished = action
+        self.listener.onFinished = action
     }
 }

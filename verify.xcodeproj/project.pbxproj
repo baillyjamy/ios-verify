@@ -12,14 +12,14 @@
 		16A9BBE5283E686D0095A38C /* verify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16A9BBDA283E686D0095A38C /* verify.framework */; };
 		16A9BBEA283E686D0095A38C /* verifyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A9BBE9283E686D0095A38C /* verifyTests.swift */; };
 		16A9BBEB283E686D0095A38C /* verify.h in Headers */ = {isa = PBXBuildFile; fileRef = 16A9BBDD283E686D0095A38C /* verify.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		16A9BC1F2840E4FE0095A38C /* Synaps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A9BC1E2840E4FE0095A38C /* Synaps.swift */; };
+		16A9BC1F2840E4FE0095A38C /* Verify.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A9BC1E2840E4FE0095A38C /* Verify.swift */; };
 		770FD00A2ADBFD31002FB641 /* VerifyLang.swift in Sources */ = {isa = PBXBuildFile; fileRef = 770FD0092ADBFD31002FB641 /* VerifyLang.swift */; };
 		770FD00C2ADC7271002FB641 /* VerifyUiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 770FD00B2ADC7271002FB641 /* VerifyUiView.swift */; };
-		773CE24A2A76F211005AF303 /* SynapsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773CE2482A76F211005AF303 /* SynapsViewModel.swift */; };
+		773CE24A2A76F211005AF303 /* VerifyListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773CE2482A76F211005AF303 /* VerifyListener.swift */; };
 		774B43BA2AEF0E670021FA4E /* VerifyWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774B43B92AEF0E670021FA4E /* VerifyWebView.swift */; };
-		7753B5982AC995F100F263C4 /* SynapsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7753B5972AC995F100F263C4 /* SynapsCoordinator.swift */; };
+		7753B5982AC995F100F263C4 /* VerifyNfcController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7753B5972AC995F100F263C4 /* VerifyNfcController.swift */; };
 		7753B59A2AC9979000F263C4 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7753B5992AC9979000F263C4 /* Data.swift */; };
-		778BF4922A6AA4D100C53165 /* SynapsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778BF4912A6AA4D100C53165 /* SynapsView.swift */; };
+		778BF4922A6AA4D100C53165 /* VerifyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778BF4912A6AA4D100C53165 /* VerifyView.swift */; };
 		779737882A8661F300B41CFF /* VerifyWebViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779737872A8661F300B41CFF /* VerifyWebViewDelegate.swift */; };
 		7797378B2A8662C700B41CFF /* URLRequestExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7797378A2A8662C700B41CFF /* URLRequestExtension.swift */; };
 		7797378F2A8665F400B41CFF /* VerifyError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7797378E2A8665F400B41CFF /* VerifyError.swift */; };
@@ -44,14 +44,14 @@
 		16A9BBDE283E686D0095A38C /* verify.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = verify.docc; sourceTree = "<group>"; };
 		16A9BBE4283E686D0095A38C /* verifyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = verifyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		16A9BBE9283E686D0095A38C /* verifyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = verifyTests.swift; sourceTree = "<group>"; };
-		16A9BC1E2840E4FE0095A38C /* Synaps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Synaps.swift; sourceTree = "<group>"; };
+		16A9BC1E2840E4FE0095A38C /* Verify.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Verify.swift; sourceTree = "<group>"; };
 		770FD0092ADBFD31002FB641 /* VerifyLang.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyLang.swift; sourceTree = "<group>"; };
 		770FD00B2ADC7271002FB641 /* VerifyUiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyUiView.swift; sourceTree = "<group>"; };
-		773CE2482A76F211005AF303 /* SynapsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SynapsViewModel.swift; sourceTree = "<group>"; };
+		773CE2482A76F211005AF303 /* VerifyListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerifyListener.swift; sourceTree = "<group>"; };
 		774B43B92AEF0E670021FA4E /* VerifyWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyWebView.swift; sourceTree = "<group>"; };
-		7753B5972AC995F100F263C4 /* SynapsCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SynapsCoordinator.swift; sourceTree = "<group>"; };
+		7753B5972AC995F100F263C4 /* VerifyNfcController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerifyNfcController.swift; sourceTree = "<group>"; };
 		7753B5992AC9979000F263C4 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
-		778BF4912A6AA4D100C53165 /* SynapsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynapsView.swift; sourceTree = "<group>"; };
+		778BF4912A6AA4D100C53165 /* VerifyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyView.swift; sourceTree = "<group>"; };
 		779737872A8661F300B41CFF /* VerifyWebViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyWebViewDelegate.swift; sourceTree = "<group>"; };
 		7797378A2A8662C700B41CFF /* URLRequestExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRequestExtension.swift; sourceTree = "<group>"; };
 		7797378E2A8665F400B41CFF /* VerifyError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyError.swift; sourceTree = "<group>"; };
@@ -107,11 +107,11 @@
 				16A9BBDD283E686D0095A38C /* verify.h */,
 				166EED3E284761C200B942F7 /* UISynaps.swift */,
 				16A9BBDE283E686D0095A38C /* verify.docc */,
-				16A9BC1E2840E4FE0095A38C /* Synaps.swift */,
-				778BF4912A6AA4D100C53165 /* SynapsView.swift */,
+				16A9BC1E2840E4FE0095A38C /* Verify.swift */,
+				778BF4912A6AA4D100C53165 /* VerifyView.swift */,
 				770FD00B2ADC7271002FB641 /* VerifyUiView.swift */,
-				7753B5972AC995F100F263C4 /* SynapsCoordinator.swift */,
-				773CE2482A76F211005AF303 /* SynapsViewModel.swift */,
+				7753B5972AC995F100F263C4 /* VerifyNfcController.swift */,
+				773CE2482A76F211005AF303 /* VerifyListener.swift */,
 				779737872A8661F300B41CFF /* VerifyWebViewDelegate.swift */,
 				7797378E2A8665F400B41CFF /* VerifyError.swift */,
 				770FD0092ADBFD31002FB641 /* VerifyLang.swift */,
@@ -252,14 +252,14 @@
 				16A9BBDF283E686D0095A38C /* verify.docc in Sources */,
 				774B43BA2AEF0E670021FA4E /* VerifyWebView.swift in Sources */,
 				166EED3F284761C200B942F7 /* UISynaps.swift in Sources */,
-				778BF4922A6AA4D100C53165 /* SynapsView.swift in Sources */,
+				778BF4922A6AA4D100C53165 /* VerifyView.swift in Sources */,
 				7753B59A2AC9979000F263C4 /* Data.swift in Sources */,
 				770FD00C2ADC7271002FB641 /* VerifyUiView.swift in Sources */,
-				7753B5982AC995F100F263C4 /* SynapsCoordinator.swift in Sources */,
-				773CE24A2A76F211005AF303 /* SynapsViewModel.swift in Sources */,
+				7753B5982AC995F100F263C4 /* VerifyNfcController.swift in Sources */,
+				773CE24A2A76F211005AF303 /* VerifyListener.swift in Sources */,
 				7797378F2A8665F400B41CFF /* VerifyError.swift in Sources */,
 				7797378B2A8662C700B41CFF /* URLRequestExtension.swift in Sources */,
-				16A9BC1F2840E4FE0095A38C /* Synaps.swift in Sources */,
+				16A9BC1F2840E4FE0095A38C /* Verify.swift in Sources */,
 				770FD00A2ADBFD31002FB641 /* VerifyLang.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

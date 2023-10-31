@@ -63,7 +63,7 @@ extension UIColor {
 
 }
 @objcMembers public class UISynaps:  UIControl {
-	open var baseUrl = Synaps.baseUrl
+	open var baseUrl = Verify.baseUrl
     var synaps: WKWebView!
     public var status: String!
     var scriptHandler: WKScriptMessageHandler!
