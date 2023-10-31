@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		166EED3F284761C200B942F7 /* UISynaps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166EED3E284761C200B942F7 /* UISynaps.swift */; };
 		16A9BBDF283E686D0095A38C /* verify.docc in Sources */ = {isa = PBXBuildFile; fileRef = 16A9BBDE283E686D0095A38C /* verify.docc */; };
 		16A9BBE5283E686D0095A38C /* verify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16A9BBDA283E686D0095A38C /* verify.framework */; };
 		16A9BBEA283E686D0095A38C /* verifyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A9BBE9283E686D0095A38C /* verifyTests.swift */; };
@@ -41,7 +40,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		166EED3E284761C200B942F7 /* UISynaps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISynaps.swift; sourceTree = "<group>"; };
 		16A9BBDA283E686D0095A38C /* verify.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = verify.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		16A9BBDD283E686D0095A38C /* verify.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = verify.h; sourceTree = "<group>"; };
 		16A9BBDE283E686D0095A38C /* verify.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = verify.docc; sourceTree = "<group>"; };
@@ -116,7 +114,6 @@
 				774B43BC2AF14E1C0021FA4E /* Nfc */,
 				779737892A8662AE00B41CFF /* Extension */,
 				16A9BBDD283E686D0095A38C /* verify.h */,
-				166EED3E284761C200B942F7 /* UISynaps.swift */,
 				16A9BBDE283E686D0095A38C /* verify.docc */,
 			);
 			path = verify;
@@ -298,7 +295,6 @@
 				16A9BBDF283E686D0095A38C /* verify.docc in Sources */,
 				774B43BA2AEF0E670021FA4E /* VerifyWebView.swift in Sources */,
 				774B43BE2AF14E2D0021FA4E /* VerifyNfcEvent.swift in Sources */,
-				166EED3F284761C200B942F7 /* UISynaps.swift in Sources */,
 				778BF4922A6AA4D100C53165 /* VerifyView.swift in Sources */,
 				7753B59A2AC9979000F263C4 /* Data.swift in Sources */,
 				770FD00C2ADC7271002FB641 /* VerifyUiView.swift in Sources */,
