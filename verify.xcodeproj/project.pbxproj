@@ -86,11 +86,11 @@
 		16A9BBD0283E686D0095A38C = {
 			isa = PBXGroup;
 			children = (
+				16A9BBDC283E686D0095A38C /* verify */,
 				774B43C72AF1617F0021FA4E /* .swiftlint.yml */,
 				779737942A866D8E00B41CFF /* SynapsVerify.podspec */,
 				779737922A866D6C00B41CFF /* README.md */,
 				779737902A866D5400B41CFF /* Package.swift */,
-				16A9BBDC283E686D0095A38C /* verify */,
 				16A9BBE8283E686D0095A38C /* verifyTests */,
 				16A9BBDB283E686D0095A38C /* Products */,
 			);

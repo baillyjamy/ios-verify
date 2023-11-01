@@ -8,6 +8,7 @@
 import Foundation
 import os
 
+// swiftlint:disable force_unwrapping
 public class Verify {
 	internal static let baseEndpoint = "https://verify.synaps.io/"
     internal static let baseEndpointTest = "https://verify.dev.synaps.run"
@@ -21,7 +22,7 @@ public class Verify {
 
     public static let shared = Verify()
 
-    public var debug: Bool = false
+    public var debug = false
     internal static let logger = Logger(
         subsystem: Bundle.main.bundleIdentifier!,
         category: String(describing: Verify.self)
@@ -35,22 +36,4 @@ public class Verify {
         return translation
     }
 }
-
-extension Verify {
-    internal class Helper {
-        static func genProgress(percentage: Int) -> String {
-            var progress = ""
-            var cursor = 0
-            while cursor < (percentage / 10) {
-                progress.append("🟦")
-                cursor += 1
-            }
-            cursor = 0
-            while cursor < (10 - (percentage / 10)) {
-                progress.append("⬜️")
-                cursor += 1
-            }
-            return progress
-        }
-    }
-}
+// swiftlint:enable force_unwrapping

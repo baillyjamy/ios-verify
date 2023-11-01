@@ -12,14 +12,14 @@ import CoreNFC
 public class VerifyNfcController: NSObject {
     private var readerSession: NFCTagReaderSession?
 
-    private var finished: Bool = false
+    private var finished = false
     private var apduContinuation: CheckedContinuation<String, Never>? = Optional.none
 
     private var step: String?
     private var cursor: Int = 0
     private var length: Int = -1
     private var retry: Int = 0
-    private var isProgress: Bool = false
+    private var isProgress = false
 
     private var nfcTag: NFCISO7816Tag?
 
@@ -98,8 +98,12 @@ public class VerifyNfcController: NSObject {
     }
 
     func sendCommand(tag: NFCISO7816Tag, _ command: String) async throws -> Data {
-        let cmd = Data(base64Encoded: command)!
-        let apdu = NFCISO7816APDU(data: cmd)!
+        guard let cmd = Data(base64Encoded: command) else {
+            throw VerifyError.commandFailed
+        }
+        guard let apdu = NFCISO7816APDU(data: cmd) else {
+            throw VerifyError.commandFailed
+        }
 
         var (data, sw1, sw2) = try await tag.sendCommand(apdu: apdu)
         data.append(sw1)
@@ -190,7 +194,9 @@ extension VerifyNfcController: NFCTagReaderSessionDelegate {
                 return
             }
 
-            let tag = tags.first!
+            guard let tag = tags.first else {
+                return
+            }
             switch tag {
             case let .iso7816(tag):
                 self.nfcTag = tag
@@ -263,7 +269,7 @@ extension VerifyNfcController: VerifyNfcEvent {
         if readerSession?.isReady ?? false {
             if self.length > 1 && self.isProgress && self.cursor <= self.length {
                 let percentage = (100 * self.cursor) / self.length
-                let progress = Verify.Helper.genProgress(percentage: percentage)
+                let progress = genProgress(percentage: percentage)
 
                 readerSession?.alertMessage = "\(self.step ?? Verify.localize(from: "Loading..."))\n \(progress)"
                 self.cursor += 1
@@ -298,5 +304,20 @@ extension VerifyNfcController: VerifyNfcEvent {
         if let translations = body["translations"] as? [String: String] {
             Verify.translations = translations
         }
+    }
+
+    private func genProgress(percentage: Int) -> String {
+        var progress = ""
+        var cursor = 0
+        while cursor < (percentage / 10) {
+            progress.append("🟦")
+            cursor += 1
+        }
+        cursor = 0
+        while cursor < (10 - (percentage / 10)) {
+            progress.append("⬜️")
+            cursor += 1
+        }
+        return progress
     }
 }

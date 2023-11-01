@@ -10,6 +10,7 @@ import Foundation
 enum VerifyError: Error {
     case permissionDenied
     case missingSessionId
+    case commandFailed
 }
 
 // swiftlint:disable line_length
@@ -25,6 +26,11 @@ extension VerifyError: LocalizedError {
             return NSLocalizedString(
                 "The session id is empty or missing. To initialize the view, specify the session id before displaying the view.",
                 comment: "Session id missing"
+            )
+        case .commandFailed:
+            return NSLocalizedString(
+                "NFC command creation or execution failed ",
+                comment: "Command Failed"
             )
         }
     }
