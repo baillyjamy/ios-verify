@@ -29,173 +29,157 @@ github "synaps-io/ios-verify"
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/synaps-io/ios-verify", from: "0.0.1")
+    .package(url: "https://github.com/synaps-io/ios-verify", from: "0.0.3")
 ]
 ```
 
-## Installation
+## Usage
 ```swift
 import SynapsVerify
 ```
-## Usage
 ### SwiftUI
 ```swift
 ...
 @State private var sessionId = ""
 var body: some View {
     ...
-    Synaps(sessionId: self.$sessionId, 
-                   primaryColor: .blue,
-                   secondaryColor: .white, ready: {
-                       print("ready")
-                   }, finished: {
-                       print("finished")
-                   })
+    VerifyView(
+        sessionId: self.$sessionId,
+        lang: .french,
+    )
     ...
 ```
-### Parameters list
 
-| Parameter name          | Parameter type                                                                                           | Default | Required | Description                                                                   |
-| ------------------ | --------------------------------------------------------------------------------------------------- | ------- | -------- | ----------------------------------------------------------------------------- |
-| `sessionId`        | `string`                                                                                            | `''`    | Y        | Session can be referred as a customer verification session. [More info](https://docs.synaps.io/manager-1/sessions)                                       |
-| `type`          | `string`                                                                                            | `'individual'`  | N       | **individual** - for know your customer **corporate** - for know your business                   |
-| `lang`      | `string`                                                                       | `'en'`  | N        | You can set a predefined language for your user. Synaps already take advantage of browser language to display the relevant language to the end-user but if your user has set up a language option to your website, you can definitely pass it as an option.|
-| `tier`      | `int`                                                                       | `null`  | N        | Tier is a simply way to divide your workflow into small pieces. It is very useful when you offer different features based on the verification level of your customer.  [More info](https://docs.synaps.io/manager-1/apps/individual/tiers)                           |
-| `primaryColor`      | `color`                                                                     | `null`  | N        | You can set a primary color, it will create a verification flow tailored to your compliance needs and your brand. |
-| `secondaryColor`      | `color`                                                                     | `null`  | N        | You can set a secondary color, it will create a verification flow tailored to your compliance needs and your brand. |
-| `ready`             | `() => void`                                                                                           | `null` | Y        | Event listener called when the page is fully loaded                                       |
-| `finished`   | `() => void`                                                                                           | `null` | Y        | Event listener called when the user finished verification                     |
 
 ### StoryBoard
 
 
 #### How to setup it
-The library allows you to use all the features of standard View with a lot of new cool features, customizable from Storyboard or from code.
+The library allows you to use all the features of standard View with a lot of new cool features
 
-
-<p align="center">
-<img src="./etape1.gif"/>
-</p>
 
 First of all, drag & drop a new View inside your view controller in storyboard.
 
-<p align="center">
-<img src="./etape2.gif"/>
-</p>
-Then set the View class to UISynapsIndividual or UISynapsCorporate
+Then set the View class to `VerifyUiView` and link your view to your variable of the same type in your ViewController
 
-<p align="center">
-<img src="./etape3.gif"/>
-</p>
-Now you are ready to customize your UISynapsIndividual or UISynapsCorporate from the `Attributes Inspector` of Interface Builder.
 
-`Attributes`
-
-| Attribute name          | Attribute type                                                                                           | Default | Required | Description                                                                   |
-| ------------------ | --------------------------------------------------------------------------------------------------- | ------- | -------- | ----------------------------------------------------------------------------- |
-| `Lang`      | `string`                                                                       | `'en'`  | N        | You can set a predefined language for your user. Synaps already take advantage of browser language to display the relevant language to the end-user but if your user has set up a language option to your website, you can definitely pass it as an option.|
-| `Tier`      | `int`                                                                       | `null`  | N        | Tier is a simply way to divide your workflow into small pieces. It is very useful when you offer different features based on the verification level of your customer.  [More info](https://docs.synaps.io/manager-1/apps/individual/tiers)                           |
-| `Primary color`      | `color`                                                                     | `null`  | N        | You can set a primary color, it will create a verification flow tailored to your compliance needs and your brand. |
-| `Secondary Color`      | `color`                                                                     | `null`  | N        | You can set a secondary color, it will create a verification flow tailored to your compliance needs and your brand. |
 #### How to launch it
 
 `Swift`
 ```swift
+import UIKit
 import SynapsVerify
-import AVFoundation
-class ViewController: UIViewController {
-    
-    @IBOutlet var synaps : UISynapsIndividual!
+
+class VerifyViewController : UIViewController {
+    @IBOutlet weak var verifyView: VerifyUiView!
+
+    var sessionId: String = ""
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        ...
+        
+        verifyView.startSession(sessionId: sessionId, lang: .french)
     }
-     func yourSessionHandler() {
-        switch AVCaptureDevice.authorizationStatus(for: .video) {
-            case .authorized:
-            synaps.sessionId = SESSION_ID
-            case .notDetermined: 
-                AVCaptureDevice.requestAccess(for: .video) { granted in
-                    if granted {
-                        self.synaps.sessionId = SESSION_ID
-                    }
-                }
-           ...
-        }
-    }
+}
 ```
 
-`Objective C`
-```objc
-...
-#import <AVFoundation/AVFoundation.h>
-...
+You are free to use `VerifyUiView` without StoryBoard
 
+First of all, you should set the session id. Session Id can be referred as a customer verification session. [More info](https://help.synaps.io/manager-1/sessions)
 
-@property (weak, nonatomic) IBOutlet UISynaps *synaps;
-...
-@end
+#### Parameters list
 
-@implementation ViewController
+| Parameter name          | Parameter type                                                                                           | Default | Required | Description                                                                   |
+| ------------------ | --------------------------------------------------------------------------------------------------- | ------- | -------- | ----------------------------------------------------------------------------- |
+| `sessionId`        | `string`                                                                                            | `''`    | Y        | Session can be referred as a customer verification session. [More info](https://help.synaps.io/manager-1/sessions)                                       |
+| `lang`      | `VerifyLang`                                                                       | `.english`  | N        | You can set a predefined language for your user. Synaps already take advantage of browser language to display the relevant language to the end-user but if your user has set up a language option to your website, you can definitely pass it as an option.|
+| `tier`      | `int`                                                                       | `null`  | N        | Tier is a simply way to divide your workflow into small pieces. It is very useful when you offer different features based on the verification level of your customer.  [More info](https://help.synaps.io/manager-1/apps/individual/tiers)                           |
 
+### Configuration
 
-...
-- (IBAction)onButtonClicked:(id)sender {
-    AVAuthorizationStatus status = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
+Avant de lancer une session Verify. Le projet de votre application a besoin de quelque configuration.
 
-    if(status == AVAuthorizationStatusAuthorized) { 
-        self.synaps.sessionId = SESSION_ID;
+#### NFC
+
+The application must declare the use of the NFC chip, and must have NFC [entilement](https://developer.apple.com/documentation/bundleresources/entitlements) : 
+```xml
+<key>com.apple.developer.nfc.readersession.formats</key>
+<array>
+    <string>TAG</string>
+</array>
+```
+
+The Info.plist file must contain the field  `NFCReaderUsageDescription`
+
+Your application's Info.plist file must contain the application IDs needed to scan the documents. 
+```xml
+<key>com.apple.developer.nfc.readersession.iso7816.select-identifiers</key>
+<array>
+    <string>A0000002471001</string>
+    <string>A0000002472001</string>
+    <string>E80704007F00070302</string>
+    <string>A000000167455349474E</string>
+    <string>A0000002480100</string>
+    <string>A0000002480200</string>
+    <string>A0000002480300</string>
+    <string>A00000045645444C2D3031</string>
+    <string>D2760000850101</string>
+    <string>00000000000000</string>
+</array>
+```
+
+More informations here : https://developer.apple.com/documentation/corenfc/nfciso7816tag
+
+#### Camera
+
+The Info.plist file must contain the field  `NSCameraUsageDescription`
+
+To be able to take photos and analyze identification documents, the right to use the camera is required and must be claimed before building the Verify view (swiftui or UIKit). The Verify view will fire a `fatalError` if the rights are not acquired when the view is built.
+
+```swift
+AVCaptureDevice.requestAccess(
+    for: .video,
+    completionHandler: { accessGranted in
+        ...
     }
-    else if(status == AVAuthorizationStatusNotDetermined){ 
+)
+```
 
-        [AVCaptureDevice requestAccessForMediaType:AVMediaTypeVideo completionHandler:^(BOOL granted) {
-            if(granted){ 
-                self.synaps.sessionId = SESSION_ID;
-            } else { 
-            }
-        }];
-    }
+### Listner
+
+Now you are ready to listen Verify event by using a callback
+
+`Swift UI`
+```swift
+VerifyView(
+    ...
+)
+.onReady {
     ...
 }
-
-@end
+.onFinished {
+    ...
+}
 ```
-First of all, you should set the session id. Session Id can be referred as a customer verification session. [More info](https://docs.synaps.io/manager-1/sessions)
+`UIKit`
 
-<p align="center">
-<img src="./etape4.gif"/>
-</p>
-
-Now you are ready to listen Synaps event by listening the event `Value Changed`
-
-`Swift`
 ```swift
-@IBAction func onStatusChanged(sender: UISynapsIndividual) {
-    if self.synaps.status == "ready" {
-        ...
-    } else if self.synaps.status == "finished" {
-        ...
-    }
+verifyView.onReady {
+    ...
+}
+verifyView.onFinished {
+    ...
 }
 ```
-`Objective C`
 
-```objc
-...
-- (IBAction)onStatusChanged:(id)sender;
-...
-- (IBAction)onStatusChanged:(id)sender {
-    if([self.synaps.status  isEqual: @"ready"]) {
-        ...
-    } else if ([self.synaps.status  isEqual: @"finished"]) {
-        ...
-    }
-}
-...
-```
-`ready`: when the page is fully loaded
+#### Listener list
 
-`finished`: when the user finished verification
+| Parameter name          | Parameter type                                                                                           | Default | Required | Description                                                                   |
+| ------------------ | --------------------------------------------------------------------------------------------------- | ------- | -------- | ----------------------------------------------------------------------------- |
+| `onReady`             | `() => Void`                                                                                           | `null` | No        | Event listener called when the page is fully loaded                                       |
+| `onFinished`   | `() => Void`                                                                                           | `null` | No        | Event listener called when the user finished verification                     |
+
+
 ## Meta
 
 [@synaps](https://twitter.com/synaps_id)

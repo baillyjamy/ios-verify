@@ -7,19 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		166EED3F284761C200B942F7 /* UISynaps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166EED3E284761C200B942F7 /* UISynaps.swift */; };
 		16A9BBDF283E686D0095A38C /* verify.docc in Sources */ = {isa = PBXBuildFile; fileRef = 16A9BBDE283E686D0095A38C /* verify.docc */; };
 		16A9BBE5283E686D0095A38C /* verify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16A9BBDA283E686D0095A38C /* verify.framework */; };
 		16A9BBEA283E686D0095A38C /* verifyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A9BBE9283E686D0095A38C /* verifyTests.swift */; };
 		16A9BBEB283E686D0095A38C /* verify.h in Headers */ = {isa = PBXBuildFile; fileRef = 16A9BBDD283E686D0095A38C /* verify.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		16A9BC1F2840E4FE0095A38C /* Synaps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A9BC1E2840E4FE0095A38C /* Synaps.swift */; };
-		773CE24A2A76F211005AF303 /* SynapsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773CE2482A76F211005AF303 /* SynapsViewModel.swift */; };
-		778BF4922A6AA4D100C53165 /* SynapsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778BF4912A6AA4D100C53165 /* SynapsView.swift */; };
-		779737842A86610100B41CFF /* SynapsScriptHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779737832A86610100B41CFF /* SynapsScriptHandler.swift */; };
-		779737862A86618600B41CFF /* SynapsListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779737852A86618600B41CFF /* SynapsListener.swift */; };
-		779737882A8661F300B41CFF /* SynapsWebViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779737872A8661F300B41CFF /* SynapsWebViewDelegate.swift */; };
+		16A9BC1F2840E4FE0095A38C /* Verify.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A9BC1E2840E4FE0095A38C /* Verify.swift */; };
+		770FD00A2ADBFD31002FB641 /* VerifyLang.swift in Sources */ = {isa = PBXBuildFile; fileRef = 770FD0092ADBFD31002FB641 /* VerifyLang.swift */; };
+		770FD00C2ADC7271002FB641 /* VerifyUiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 770FD00B2ADC7271002FB641 /* VerifyUiView.swift */; };
+		773CE24A2A76F211005AF303 /* VerifyListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773CE2482A76F211005AF303 /* VerifyListener.swift */; };
+		774B43BA2AEF0E670021FA4E /* VerifyWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774B43B92AEF0E670021FA4E /* VerifyWebView.swift */; };
+		774B43BE2AF14E2D0021FA4E /* VerifyNfcEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774B43BD2AF14E2D0021FA4E /* VerifyNfcEvent.swift */; };
+		774B43C12AF14EB40021FA4E /* VerifyWebViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774B43C02AF14EB40021FA4E /* VerifyWebViewDelegate.swift */; };
+		774B43C82AF1617F0021FA4E /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 774B43C72AF1617F0021FA4E /* .swiftlint.yml */; };
+		7753B5982AC995F100F263C4 /* VerifyNfcController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7753B5972AC995F100F263C4 /* VerifyNfcController.swift */; };
+		7753B59A2AC9979000F263C4 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7753B5992AC9979000F263C4 /* Data.swift */; };
+		778BF4922A6AA4D100C53165 /* VerifyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778BF4912A6AA4D100C53165 /* VerifyView.swift */; };
+		779737882A8661F300B41CFF /* VerifyWKUIDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779737872A8661F300B41CFF /* VerifyWKUIDelegate.swift */; };
 		7797378B2A8662C700B41CFF /* URLRequestExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7797378A2A8662C700B41CFF /* URLRequestExtension.swift */; };
-		7797378F2A8665F400B41CFF /* SynapsError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7797378E2A8665F400B41CFF /* SynapsError.swift */; };
+		7797378F2A8665F400B41CFF /* VerifyError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7797378E2A8665F400B41CFF /* VerifyError.swift */; };
 		779737932A866D6C00B41CFF /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 779737922A866D6C00B41CFF /* README.md */; };
 		779737952A866D8E00B41CFF /* SynapsVerify.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 779737942A866D8E00B41CFF /* SynapsVerify.podspec */; };
 /* End PBXBuildFile section */
@@ -35,20 +40,25 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		166EED3E284761C200B942F7 /* UISynaps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISynaps.swift; sourceTree = "<group>"; };
 		16A9BBDA283E686D0095A38C /* verify.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = verify.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		16A9BBDD283E686D0095A38C /* verify.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = verify.h; sourceTree = "<group>"; };
 		16A9BBDE283E686D0095A38C /* verify.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = verify.docc; sourceTree = "<group>"; };
 		16A9BBE4283E686D0095A38C /* verifyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = verifyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		16A9BBE9283E686D0095A38C /* verifyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = verifyTests.swift; sourceTree = "<group>"; };
-		16A9BC1E2840E4FE0095A38C /* Synaps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Synaps.swift; sourceTree = "<group>"; };
-		773CE2482A76F211005AF303 /* SynapsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SynapsViewModel.swift; sourceTree = "<group>"; };
-		778BF4912A6AA4D100C53165 /* SynapsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynapsView.swift; sourceTree = "<group>"; };
-		779737832A86610100B41CFF /* SynapsScriptHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynapsScriptHandler.swift; sourceTree = "<group>"; };
-		779737852A86618600B41CFF /* SynapsListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynapsListener.swift; sourceTree = "<group>"; };
-		779737872A8661F300B41CFF /* SynapsWebViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynapsWebViewDelegate.swift; sourceTree = "<group>"; };
+		16A9BC1E2840E4FE0095A38C /* Verify.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Verify.swift; sourceTree = "<group>"; };
+		770FD0092ADBFD31002FB641 /* VerifyLang.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyLang.swift; sourceTree = "<group>"; };
+		770FD00B2ADC7271002FB641 /* VerifyUiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyUiView.swift; sourceTree = "<group>"; };
+		773CE2482A76F211005AF303 /* VerifyListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerifyListener.swift; sourceTree = "<group>"; };
+		774B43B92AEF0E670021FA4E /* VerifyWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyWebView.swift; sourceTree = "<group>"; };
+		774B43BD2AF14E2D0021FA4E /* VerifyNfcEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyNfcEvent.swift; sourceTree = "<group>"; };
+		774B43C02AF14EB40021FA4E /* VerifyWebViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyWebViewDelegate.swift; sourceTree = "<group>"; };
+		774B43C72AF1617F0021FA4E /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		7753B5972AC995F100F263C4 /* VerifyNfcController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerifyNfcController.swift; sourceTree = "<group>"; };
+		7753B5992AC9979000F263C4 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		778BF4912A6AA4D100C53165 /* VerifyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyView.swift; sourceTree = "<group>"; };
+		779737872A8661F300B41CFF /* VerifyWKUIDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyWKUIDelegate.swift; sourceTree = "<group>"; };
 		7797378A2A8662C700B41CFF /* URLRequestExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRequestExtension.swift; sourceTree = "<group>"; };
-		7797378E2A8665F400B41CFF /* SynapsError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynapsError.swift; sourceTree = "<group>"; };
+		7797378E2A8665F400B41CFF /* VerifyError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyError.swift; sourceTree = "<group>"; };
 		779737902A866D5400B41CFF /* Package.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		779737922A866D6C00B41CFF /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		779737942A866D8E00B41CFF /* SynapsVerify.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SynapsVerify.podspec; sourceTree = "<group>"; };
@@ -76,10 +86,11 @@
 		16A9BBD0283E686D0095A38C = {
 			isa = PBXGroup;
 			children = (
+				16A9BBDC283E686D0095A38C /* verify */,
+				774B43C72AF1617F0021FA4E /* .swiftlint.yml */,
 				779737942A866D8E00B41CFF /* SynapsVerify.podspec */,
 				779737922A866D6C00B41CFF /* README.md */,
 				779737902A866D5400B41CFF /* Package.swift */,
-				16A9BBDC283E686D0095A38C /* verify */,
 				16A9BBE8283E686D0095A38C /* verifyTests */,
 				16A9BBDB283E686D0095A38C /* Products */,
 			);
@@ -97,17 +108,13 @@
 		16A9BBDC283E686D0095A38C /* verify */ = {
 			isa = PBXGroup;
 			children = (
+				774B43C22AF1525D0021FA4E /* View */,
+				774B43C32AF152720021FA4E /* Core */,
+				774B43BF2AF14E490021FA4E /* WebView */,
+				774B43BC2AF14E1C0021FA4E /* Nfc */,
 				779737892A8662AE00B41CFF /* Extension */,
 				16A9BBDD283E686D0095A38C /* verify.h */,
-				166EED3E284761C200B942F7 /* UISynaps.swift */,
 				16A9BBDE283E686D0095A38C /* verify.docc */,
-				16A9BC1E2840E4FE0095A38C /* Synaps.swift */,
-				778BF4912A6AA4D100C53165 /* SynapsView.swift */,
-				773CE2482A76F211005AF303 /* SynapsViewModel.swift */,
-				779737852A86618600B41CFF /* SynapsListener.swift */,
-				779737832A86610100B41CFF /* SynapsScriptHandler.swift */,
-				779737872A8661F300B41CFF /* SynapsWebViewDelegate.swift */,
-				7797378E2A8665F400B41CFF /* SynapsError.swift */,
 			);
 			path = verify;
 			sourceTree = "<group>";
@@ -120,10 +127,50 @@
 			path = verifyTests;
 			sourceTree = "<group>";
 		};
+		774B43BC2AF14E1C0021FA4E /* Nfc */ = {
+			isa = PBXGroup;
+			children = (
+				7753B5972AC995F100F263C4 /* VerifyNfcController.swift */,
+				774B43BD2AF14E2D0021FA4E /* VerifyNfcEvent.swift */,
+			);
+			path = Nfc;
+			sourceTree = "<group>";
+		};
+		774B43BF2AF14E490021FA4E /* WebView */ = {
+			isa = PBXGroup;
+			children = (
+				774B43B92AEF0E670021FA4E /* VerifyWebView.swift */,
+				774B43C02AF14EB40021FA4E /* VerifyWebViewDelegate.swift */,
+				779737872A8661F300B41CFF /* VerifyWKUIDelegate.swift */,
+			);
+			path = WebView;
+			sourceTree = "<group>";
+		};
+		774B43C22AF1525D0021FA4E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				778BF4912A6AA4D100C53165 /* VerifyView.swift */,
+				770FD00B2ADC7271002FB641 /* VerifyUiView.swift */,
+				773CE2482A76F211005AF303 /* VerifyListener.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		774B43C32AF152720021FA4E /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				16A9BC1E2840E4FE0095A38C /* Verify.swift */,
+				7797378E2A8665F400B41CFF /* VerifyError.swift */,
+				770FD0092ADBFD31002FB641 /* VerifyLang.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
 		779737892A8662AE00B41CFF /* Extension */ = {
 			isa = PBXGroup;
 			children = (
 				7797378A2A8662C700B41CFF /* URLRequestExtension.swift */,
+				7753B5992AC9979000F263C4 /* Data.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -154,6 +201,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				774B43C62AF1605A0021FA4E /* PBXTargetDependency */,
 			);
 			name = verify;
 			productName = verify;
@@ -186,7 +234,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1340;
-				LastUpgradeCheck = 1430;
+				LastUpgradeCheck = 1500;
 				TargetAttributes = {
 					16A9BBD9283E686D0095A38C = {
 						CreatedOnToolsVersion = 13.4;
@@ -205,6 +253,9 @@
 				Base,
 			);
 			mainGroup = 16A9BBD0283E686D0095A38C;
+			packageReferences = (
+				774B43C42AF15FF30021FA4E /* XCRemoteSwiftPackageReference "SwiftLint" */,
+			);
 			productRefGroup = 16A9BBDB283E686D0095A38C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -220,6 +271,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				774B43C82AF1617F0021FA4E /* .swiftlint.yml in Resources */,
 				779737932A866D6C00B41CFF /* README.md in Resources */,
 				779737952A866D8E00B41CFF /* SynapsVerify.podspec in Resources */,
 			);
@@ -239,16 +291,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				779737882A8661F300B41CFF /* SynapsWebViewDelegate.swift in Sources */,
+				779737882A8661F300B41CFF /* VerifyWKUIDelegate.swift in Sources */,
 				16A9BBDF283E686D0095A38C /* verify.docc in Sources */,
-				166EED3F284761C200B942F7 /* UISynaps.swift in Sources */,
-				778BF4922A6AA4D100C53165 /* SynapsView.swift in Sources */,
-				779737842A86610100B41CFF /* SynapsScriptHandler.swift in Sources */,
-				773CE24A2A76F211005AF303 /* SynapsViewModel.swift in Sources */,
-				7797378F2A8665F400B41CFF /* SynapsError.swift in Sources */,
-				779737862A86618600B41CFF /* SynapsListener.swift in Sources */,
+				774B43BA2AEF0E670021FA4E /* VerifyWebView.swift in Sources */,
+				774B43BE2AF14E2D0021FA4E /* VerifyNfcEvent.swift in Sources */,
+				778BF4922A6AA4D100C53165 /* VerifyView.swift in Sources */,
+				7753B59A2AC9979000F263C4 /* Data.swift in Sources */,
+				770FD00C2ADC7271002FB641 /* VerifyUiView.swift in Sources */,
+				7753B5982AC995F100F263C4 /* VerifyNfcController.swift in Sources */,
+				774B43C12AF14EB40021FA4E /* VerifyWebViewDelegate.swift in Sources */,
+				773CE24A2A76F211005AF303 /* VerifyListener.swift in Sources */,
+				7797378F2A8665F400B41CFF /* VerifyError.swift in Sources */,
 				7797378B2A8662C700B41CFF /* URLRequestExtension.swift in Sources */,
-				16A9BC1F2840E4FE0095A38C /* Synaps.swift in Sources */,
+				16A9BC1F2840E4FE0095A38C /* Verify.swift in Sources */,
+				770FD00A2ADBFD31002FB641 /* VerifyLang.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -268,6 +324,10 @@
 			target = 16A9BBD9283E686D0095A38C /* verify */;
 			targetProxy = 16A9BBE6283E686D0095A38C /* PBXContainerItemProxy */;
 		};
+		774B43C62AF1605A0021FA4E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 774B43C52AF1605A0021FA4E /* SwiftLintPlugin */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
@@ -275,6 +335,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -308,6 +369,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -338,6 +400,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -371,6 +434,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -415,7 +479,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.0.2;
+				MARKETING_VERSION = 0.0.3;
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++17";
 				ONLY_ACTIVE_ARCH = NO;
@@ -456,7 +520,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.0.2;
+				MARKETING_VERSION = 0.0.3;
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++17";
 				ONLY_ACTIVE_ARCH = NO;
@@ -536,6 +600,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		774B43C42AF15FF30021FA4E /* XCRemoteSwiftPackageReference "SwiftLint" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/SwiftLint.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.53.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		774B43C52AF1605A0021FA4E /* SwiftLintPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 774B43C42AF15FF30021FA4E /* XCRemoteSwiftPackageReference "SwiftLint" */;
+			productName = "plugin:SwiftLintPlugin";
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 16A9BBD1283E686D0095A38C /* Project object */;
 }

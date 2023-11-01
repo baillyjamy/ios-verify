@@ -16,7 +16,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "SynapsVerify"
-  spec.version      = "0.0.2"
+  spec.version      = "0.0.3"
   spec.summary      = "Synaps KYC and KYB integration"
 
   # This description is used to generate tags and improve search results.
@@ -93,7 +93,7 @@ Pod::Spec.new do |spec|
 
   spec.source_files  = "verify/*.{h,swift}"
   spec.platform     = ['ios']
-  spec.ios.deployment_target = "13.0"
+  spec.ios.deployment_target = "15.0"
   spec.swift_versions = ['5.3']
   spec.requires_arc = true
 
