@@ -24,7 +24,7 @@ public class VerifyUiView: UIView, VerifyWebView {
         super.init(coder: coder)
     }
 
-    public func startSession(sessionId: String, lang: VerifyLang, tier tierIdentifier: String? = nil) {
+    public func startSession(sessionId: String, lang: VerifyLang = .english, tier tierIdentifier: String? = nil) {
         if AVCaptureDevice.authorizationStatus(for: .video) != .authorized {
             fatalError(VerifyError.permissionDenied.localizedDescription)
         }
