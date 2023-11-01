@@ -19,6 +19,7 @@ public class VerifyNfcController: NSObject {
     private var cursor: Int = 0
     private var length: Int = -1
     private var retry: Int = 0
+    private var isProgress: Bool = false
 
     private var nfcTag: NFCISO7816Tag?
 
@@ -260,11 +261,14 @@ extension VerifyNfcController: VerifyNfcEvent {
         sendRequestApduToTag(apdu)
 
         if readerSession?.isReady ?? false {
-            if self.length > 0 {
-                readerSession?.alertMessage = "\(self.step ?? "/"): \((100*self.cursor)/self.length)%"
+            if self.length > 1 && self.isProgress && self.cursor <= self.length {
+                let percentage = (100 * self.cursor) / self.length
+                let progress = Verify.Helper.genProgress(percentage: percentage)
+
+                readerSession?.alertMessage = "\(self.step ?? Verify.localize(from: "Loading..."))\n \(progress)"
                 self.cursor += 1
             } else {
-                readerSession?.alertMessage = self.step ?? "loading..."
+                readerSession?.alertMessage = self.step ?? Verify.localize(from: "Loading...")
             }
         }
     }
@@ -278,6 +282,9 @@ extension VerifyNfcController: VerifyNfcEvent {
             self.cursor = 0
         } else {
             self.length = 0
+        }
+        if let isProgressString = body["progress"] as? Int {
+            self.isProgress = (isProgressString != 0)
         }
     }
 

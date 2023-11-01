@@ -35,3 +35,22 @@ public class Verify {
         return translation
     }
 }
+
+extension Verify {
+    internal class Helper {
+        static func genProgress(percentage: Int) -> String {
+            var progress = ""
+            var cursor = 0
+            while cursor < (percentage / 10) {
+                progress.append("🟦")
+                cursor += 1
+            }
+            cursor = 0
+            while cursor < (10 - (percentage / 10)) {
+                progress.append("⬜️")
+                cursor += 1
+            }
+            return progress
+        }
+    }
+}
