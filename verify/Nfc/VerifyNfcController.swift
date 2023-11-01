@@ -153,6 +153,8 @@ extension VerifyNfcController: WKScriptMessageHandler {
                 nfcLog(body: body)
             case "step":
                 nfcStep(body: body)
+            case "localize":
+                localize(body: body)
             default:
                 break
             }
@@ -178,10 +180,12 @@ extension VerifyNfcController: NFCTagReaderSessionDelegate {
         DispatchQueue.main.async {
             if tags.count > 1 {
                 let retryInterval = DispatchTimeInterval.milliseconds(500)
-                session.alertMessage = "More than 1 tag is detected. Please remove all tags and try again."
-                DispatchQueue.global().asyncAfter(deadline: .now() + retryInterval, execute: {
+                session.alertMessage = Verify.localize(
+                    from: "More than 1 tag is detected. Please remove all tags and try again."
+                )
+                DispatchQueue.global().asyncAfter(deadline: .now() + retryInterval) {
                     session.restartPolling()
-                })
+                }
                 return
             }
 
@@ -200,7 +204,9 @@ extension VerifyNfcController: NFCTagReaderSessionDelegate {
                 do {
                     session.connect(to: tag) { (error: Error?) in
                         if error != nil {
-                            session.invalidate(errorMessage: "Connection error. Please try again.")
+                            session.invalidate(
+                                errorMessage: Verify.localize(from: "Connection error. Please try again.")
+                            )
                             return
                         }
                     }
@@ -214,7 +220,7 @@ extension VerifyNfcController: NFCTagReaderSessionDelegate {
                     if Verify.shared.debug {
                         Verify.logger.error("Error while reading session: \(error)")
                     }
-                    session.invalidate(errorMessage: "Connection error. Please try again.")
+                    session.invalidate(errorMessage: Verify.localize(from: "Connection error. Please try again."))
                     self.cleanupReaderSession()
                 }
             }
@@ -233,7 +239,7 @@ extension VerifyNfcController: VerifyNfcEvent {
 
         if NFCTagReaderSession.readingAvailable {
             readerSession = NFCTagReaderSession(pollingOption: [.iso14443], delegate: self, queue: nil)
-            readerSession?.alertMessage = "Hold your iPhone near the item to learn more about it."
+            readerSession?.alertMessage = Verify.localize(from: "Hold your iPhone near the document.")
             print("NFC ready ? : \(NFCTagReaderSession.readingAvailable)")
             readerSession?.begin()
         }
@@ -255,7 +261,7 @@ extension VerifyNfcController: VerifyNfcEvent {
 
         if readerSession?.isReady ?? false {
             if self.length > 0 {
-                readerSession?.alertMessage = "\(self.step ?? "/"): \((100*self.cursor)/self.length)%";
+                readerSession?.alertMessage = "\(self.step ?? "/"): \((100*self.cursor)/self.length)%"
                 self.cursor += 1
             } else {
                 readerSession?.alertMessage = self.step ?? "loading..."
@@ -278,6 +284,12 @@ extension VerifyNfcController: VerifyNfcEvent {
     func nfcLog(body: [String: AnyObject]) {
         if Verify.shared.debug {
             Verify.logger.debug("\(body)")
+        }
+    }
+
+    func localize(body: [String: AnyObject]) {
+        if let translations = body["translations"] as? [String: String] {
+            Verify.translations = translations
         }
     }
 }

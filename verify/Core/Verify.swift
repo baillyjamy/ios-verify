@@ -26,4 +26,12 @@ public class Verify {
         subsystem: Bundle.main.bundleIdentifier!,
         category: String(describing: Verify.self)
     )
+
+    internal static var translations: [String: String] = [:]
+    internal static func localize(from key: String) -> String {
+        guard let translation = translations[key] else {
+            return key
+        }
+        return translation
+    }
 }

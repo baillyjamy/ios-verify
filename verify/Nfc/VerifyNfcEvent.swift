@@ -13,4 +13,5 @@ protocol VerifyNfcEvent {
     func nfcTransmit(body: [String: AnyObject])
     func nfcStep(body: [String: AnyObject])
     func nfcLog(body: [String: AnyObject])
+    func localize(body: [String: AnyObject])
 }
