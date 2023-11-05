@@ -11,6 +11,7 @@ import os
 // swiftlint:disable force_unwrapping
 public class Verify {
 	internal static let baseEndpoint = "https://verify.synaps.io/"
+    internal static let baseEndpointTest = "https://verify.dev.synaps.run"
 	internal static let baseUrl = URL(string: baseEndpoint)!
 
 	internal static let messageHandlerJavascript = """

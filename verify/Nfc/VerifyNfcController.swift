@@ -47,13 +47,6 @@ public class VerifyNfcController: NSObject {
     }
 
     func resetReaderSession(tag: NFCISO7816Tag) async throws -> Bool {
-        if let aid = nfcTag?.initialSelectedAID {
-            print("aid:")
-            print(aid)
-        } else {
-            print("yolo")
-        }
-
         let selectCommand = NFCISO7816APDU(
             instructionClass: 0x00,
             instructionCode: 0xA4,
@@ -131,9 +124,7 @@ extension VerifyNfcController: WKScriptMessageHandler {
         guard message.name == "verify" else {
             return
         }
-        print("LOG :\(message.body)")
         if let body = message.body as? String {
-            // print("LOG :\(body)")
             switch body {
             case "ready":
                 delegate?.onReady()
@@ -143,7 +134,6 @@ extension VerifyNfcController: WKScriptMessageHandler {
                 break
             }
         } else if let body = message.body as? [String: AnyObject] {
-            // print("LOG :\(body)")
             guard let type = body["type"] as? String else {
                 return
             }
@@ -247,7 +237,6 @@ extension VerifyNfcController: VerifyNfcEvent {
         if NFCTagReaderSession.readingAvailable {
             readerSession = NFCTagReaderSession(pollingOption: [.iso14443], delegate: self, queue: nil)
             readerSession?.alertMessage = Verify.localize(from: "Hold your iPhone near the document.")
-            print("NFC ready ? : \(NFCTagReaderSession.readingAvailable)")
             readerSession?.begin()
         }
     }
@@ -256,6 +245,7 @@ extension VerifyNfcController: VerifyNfcEvent {
         if !finished {
             finished = true
             sendRequestApduToTag("")
+            readerSession?.alertMessage = ""
             readerSession?.invalidate()
         }
     }
@@ -270,7 +260,6 @@ extension VerifyNfcController: VerifyNfcEvent {
             if self.length > 1 && self.isProgress && self.cursor <= self.length {
                 let percentage = (100 * self.cursor) / self.length
                 let progress = genProgress(percentage: percentage)
-
                 readerSession?.alertMessage = "\(self.step ?? Verify.localize(from: "Loading..."))\n \(progress)"
                 self.cursor += 1
             } else {
