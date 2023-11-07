@@ -11,7 +11,7 @@ import AVFoundation
 
 @available(iOS 15.0, *)
 public struct VerifyView: UIViewRepresentable, VerifyWebView {
-	@Binding var sessionId: String
+	let sessionId: String
 	let lang: VerifyLang
 	let tierIdentifier: String?
 
@@ -20,11 +20,11 @@ public struct VerifyView: UIViewRepresentable, VerifyWebView {
     internal var listener = VerifyListener()
 
 	public init(
-		sessionId: Binding<String>,
+		sessionId: String,
 		lang: VerifyLang = .english,
 		tier tierIdentifier: String? = nil
 	) {
-		self._sessionId = sessionId
+        self.sessionId = sessionId
 		self.lang = lang
 		self.tierIdentifier = tierIdentifier
 	}
