@@ -90,28 +90,24 @@ extension VerifyNfcController: WKScriptMessageHandler {
             }
         } else if let body = message.body as? [String: AnyObject] {
             Task { [body] in
-                do {
-                    guard let type = body["type"] as? String else {
-                        return
-                    }
-                    switch type {
-                    case "nfc_start":
-                        nfcStart()
-                    case "nfc_stop":
-                        nfcStop(body: body)
-                    case "nfc_transmit":
-                        try await nfcTransmit(body: body)
-                    case "log":
-                        nfcLog(body: body)
-                    case "step":
-                        nfcStep(body: body)
-                    case "localize":
-                        localize(body: body)
-                    default:
-                        break
-                    }
-                } catch {
-
+                guard let type = body["type"] as? String else {
+                    return
+                }
+                switch type {
+                case "nfc_start":
+                    nfcStart()
+                case "nfc_stop":
+                    nfcStop(body: body)
+                case "nfc_transmit":
+                    await nfcTransmit(body: body)
+                case "log":
+                    nfcLog(body: body)
+                case "step":
+                    nfcStep(body: body)
+                case "localize":
+                    localize(body: body)
+                default:
+                    break
                 }
             }
         }
@@ -130,7 +126,8 @@ extension VerifyNfcController: NFCTagReaderSessionDelegate {
             Verify.logger.error("Error while reading tag: \(error)")
         }
         session.alertMessage = error.localizedDescription
-        if let readerError = error as? NFCReaderError, readerError.code == NFCReaderError.readerSessionInvalidationErrorUserCanceled {
+        if let readerError = error as? NFCReaderError,
+            readerError.code == NFCReaderError.readerSessionInvalidationErrorUserCanceled {
             self.sendWebviewMessage("window.__verify_ios_tag_disconnected(true)")
         } else {
             self.sendWebviewMessage("window.__verify_ios_tag_disconnected(false)")
@@ -214,8 +211,7 @@ extension VerifyNfcController: VerifyNfcEvent {
         }
     }
 
-    func nfcTransmit(body: [String: AnyObject]) async throws {
-        print(body)
+    func nfcTransmit(body: [String: AnyObject]) async {
         guard let apdu = body["apdu"] as? String else {
             return
         }
