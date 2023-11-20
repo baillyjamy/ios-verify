@@ -12,7 +12,8 @@ import os
 public class Verify {
 	internal static let baseEndpoint = "https://verify.synaps.io/"
     internal static let baseEndpointTest = "https://verify.dev.synaps.run"
-	internal static let baseUrl = URL(string: baseEndpoint)!
+    internal static let baseEndpointTestReset = "https://verify-git-feature-nfc-reset-synaps-hub.vercel.app"
+	internal static let baseUrl = URL(string: baseEndpointTestReset)!
 
 	internal static let messageHandlerJavascript = """
 		window.addEventListener("message", ({ data }) => {

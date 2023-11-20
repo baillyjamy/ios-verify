@@ -9,8 +9,8 @@ import Foundation
 
 protocol VerifyNfcEvent {
     func nfcStart()
-    func nfcStop()
-    func nfcTransmit(body: [String: AnyObject])
+    func nfcStop(body: [String: AnyObject])
+    func nfcTransmit(body: [String: AnyObject]) async throws
     func nfcStep(body: [String: AnyObject])
     func nfcLog(body: [String: AnyObject])
     func localize(body: [String: AnyObject])
