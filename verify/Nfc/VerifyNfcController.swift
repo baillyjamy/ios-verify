@@ -12,38 +12,16 @@ import CoreNFC
 public class VerifyNfcController: NSObject {
     private var readerSession: NFCTagReaderSession?
 
-    private var finished = false
-    private var apduContinuation: CheckedContinuation<String, Never>? = Optional.none
-
     private var step: String?
-    private var cursor: Int = 0
-    private var length: Int = -1
-    private var retry: Int = 0
     private var isProgress = false
 
     private var nfcTag: NFCISO7816Tag?
+    private let retryInterval = DispatchTimeInterval.milliseconds(500)
 
     var delegate: VerifyDelegate?
 
-    func startTagReading(tag: NFCISO7816Tag) async throws {
-        self.finished = false
-
-        DispatchQueue.main.async {
-            self.sendWebviewMessage("window.__verify_ios_tag_connected()")
-        }
-
-        while true {
-            let message = await waitForApduFromApi()
-
-            if finished {
-                return
-            }
-
-            let responseApdu = try await self.sendCommand(tag: tag, message)
-            DispatchQueue.main.async {
-                self.sendToWebviewResponseApdu(responseApdu)
-            }
-        }
+    func startTagReading() {
+        self.sendWebviewMessage("window.__verify_ios_tag_connected()")
     }
 
     func resetReaderSession(tag: NFCISO7816Tag) async throws -> Bool {
@@ -67,30 +45,7 @@ public class VerifyNfcController: NSObject {
         return false
     }
 
-    private func cleanupReaderSession() {
-        if !finished {
-            finished = true
-            self.apduContinuation = Optional.none
-            DispatchQueue.main.async {
-                self.readerSession?.invalidate()
-                self.sendWebviewMessage("window.__verify_ios_tag_disconnected()")
-            }
-        }
-    }
-
-    func sendRequestApduToTag(_ newApdu: String) {
-        if let continuation = apduContinuation {
-            continuation.resume(returning: newApdu)
-        }
-    }
-
-    func waitForApduFromApi() async -> String {
-        return await withCheckedContinuation { (continuation: CheckedContinuation<String, Never>) in
-            apduContinuation = continuation
-        }
-    }
-
-    func sendCommand(tag: NFCISO7816Tag, _ command: String) async throws -> Data {
+    func sendCommand(tag: NFCISO7816Tag, command: String) async throws -> Data {
         guard let cmd = Data(base64Encoded: command) else {
             throw VerifyError.commandFailed
         }
@@ -134,24 +89,30 @@ extension VerifyNfcController: WKScriptMessageHandler {
                 break
             }
         } else if let body = message.body as? [String: AnyObject] {
-            guard let type = body["type"] as? String else {
-                return
-            }
-            switch type {
-            case "nfc_start":
-                nfcStart()
-            case "nfc_stop":
-                nfcStop()
-            case "nfc_transmit":
-                nfcTransmit(body: body)
-            case "log":
-                nfcLog(body: body)
-            case "step":
-                nfcStep(body: body)
-            case "localize":
-                localize(body: body)
-            default:
-                break
+            Task { [body] in
+                do {
+                    guard let type = body["type"] as? String else {
+                        return
+                    }
+                    switch type {
+                    case "nfc_start":
+                        nfcStart()
+                    case "nfc_stop":
+                        nfcStop(body: body)
+                    case "nfc_transmit":
+                        try await nfcTransmit(body: body)
+                    case "log":
+                        nfcLog(body: body)
+                    case "step":
+                        nfcStep(body: body)
+                    case "localize":
+                        localize(body: body)
+                    default:
+                        break
+                    }
+                } catch {
+
+                }
             }
         }
     }
@@ -168,17 +129,21 @@ extension VerifyNfcController: NFCTagReaderSessionDelegate {
         if Verify.shared.debug {
             Verify.logger.error("Error while reading tag: \(error)")
         }
-        cleanupReaderSession()
+        session.alertMessage = error.localizedDescription
+        if let readerError = error as? NFCReaderError, readerError.code == NFCReaderError.readerSessionInvalidationErrorUserCanceled {
+            self.sendWebviewMessage("window.__verify_ios_tag_disconnected(true)")
+        } else {
+            self.sendWebviewMessage("window.__verify_ios_tag_disconnected(false)")
+        }
     }
 
     public func tagReaderSession(_ session: NFCTagReaderSession, didDetect tags: [NFCTag]) {
         DispatchQueue.main.async {
             if tags.count > 1 {
-                let retryInterval = DispatchTimeInterval.milliseconds(500)
                 session.alertMessage = Verify.localize(
                     from: "More than 1 tag is detected. Please remove all tags and try again."
                 )
-                DispatchQueue.global().asyncAfter(deadline: .now() + retryInterval) {
+                DispatchQueue.global().asyncAfter(deadline: .now() + self.retryInterval) {
                     session.restartPolling()
                 }
                 return
@@ -210,7 +175,7 @@ extension VerifyNfcController: NFCTagReaderSessionDelegate {
 
                     if let nfcTag {
                         if try await self.resetReaderSession(tag: nfcTag) {
-                            try await self.startTagReading(tag: nfcTag)
+                            self.startTagReading()
                         }
                     }
                 } catch let error {
@@ -218,7 +183,6 @@ extension VerifyNfcController: NFCTagReaderSessionDelegate {
                         Verify.logger.error("Error while reading session: \(error)")
                     }
                     session.invalidate(errorMessage: Verify.localize(from: "Connection error. Please try again."))
-                    self.cleanupReaderSession()
                 }
             }
         }
@@ -241,29 +205,42 @@ extension VerifyNfcController: VerifyNfcEvent {
         }
     }
 
-    func nfcStop() {
-        if !finished {
-            finished = true
-            sendRequestApduToTag("")
-            readerSession?.alertMessage = ""
+    func nfcStop(body: [String: AnyObject]) {
+        readerSession?.alertMessage = ""
+        if let error = body["error"] as? String {
+            readerSession?.invalidate(errorMessage: error)
+        } else {
             readerSession?.invalidate()
         }
     }
 
-    func nfcTransmit(body: [String: AnyObject]) {
+    func nfcTransmit(body: [String: AnyObject]) async throws {
+        print(body)
         guard let apdu = body["apdu"] as? String else {
             return
         }
-        sendRequestApduToTag(apdu)
 
         if readerSession?.isReady ?? false {
-            if self.length > 1 && self.isProgress && self.cursor <= self.length {
-                let percentage = (100 * self.cursor) / self.length
+            if let percentage = body["progress"] as? Int, isProgress {
                 let progress = genProgress(percentage: percentage)
                 readerSession?.alertMessage = "\(self.step ?? Verify.localize(from: "Loading..."))\n \(progress)"
-                self.cursor += 1
             } else {
                 readerSession?.alertMessage = self.step ?? Verify.localize(from: "Loading...")
+            }
+        }
+
+
+        if let tag = self.nfcTag {
+            do {
+                let responseApdu = try await self.sendCommand(tag: tag, command: apdu)
+                DispatchQueue.main.async {
+                    self.sendToWebviewResponseApdu(responseApdu)
+                }
+            } catch {
+                self.sendWebviewMessage("window.__verify_ios_tag_disconnected(false)")
+                DispatchQueue.global().asyncAfter(deadline: .now() + retryInterval) { [self] in
+                    readerSession?.restartPolling()
+                }
             }
         }
     }
@@ -271,13 +248,6 @@ extension VerifyNfcController: VerifyNfcEvent {
     func nfcStep(body: [String: AnyObject]) {
         guard let value = body["step"] as? String else { return }
         self.step = value
-        guard let lengthStr = body["length"] as? String else { return }
-        if let length = Int(lengthStr) {
-            self.length = length
-            self.cursor = 0
-        } else {
-            self.length = 0
-        }
         if let isProgressString = body["progress"] as? Int {
             self.isProgress = (isProgressString != 0)
         }
