@@ -132,9 +132,9 @@ More informations here : https://developer.apple.com/documentation/corenfc/nfcis
 
 #### Camera
 
-The Info.plist file must contain the field  `NSCameraUsageDescription`
+The Info.plist file may contain the field  `NSCameraUsageDescription`
 
-To be able to take photos and analyze identification documents, the right to use the camera is required and must be claimed before building the Verify view (swiftui or UIKit). The Verify view will fire a `fatalError` if the rights are not acquired when the view is built.
+To be able to take photos and analyze identification documents, the right to use the camera is required and must be claimed before building the Verify view (swiftui or UIKit). The Verify view will fire a `warning` if the rights are not acquired when the view is built.
 
 ```swift
 AVCaptureDevice.requestAccess(
