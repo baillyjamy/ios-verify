@@ -26,7 +26,9 @@ public class VerifyUiView: UIView, VerifyWebView {
 
     public func startSession(sessionId: String, lang: VerifyLang = .english, tier tierIdentifier: String? = nil) {
         if AVCaptureDevice.authorizationStatus(for: .video) != .authorized {
-            fatalError(VerifyError.permissionDenied.localizedDescription)
+            if Verify.shared.debug {
+                Verify.logger.warning("\(VerifyError.permissionDenied.localizedDescription)")
+            }
         }
         coordinator.delegate = self
         webView = createWebView(frame: self.frame, sessionId: sessionId, lang: lang, tierIdentifier: tierIdentifier)

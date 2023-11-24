@@ -8,6 +8,7 @@
 import SwiftUI
 import WebKit
 import AVFoundation
+import os
 
 @available(iOS 15.0, *)
 public struct VerifyView: UIViewRepresentable, VerifyWebView {
@@ -31,7 +32,9 @@ public struct VerifyView: UIViewRepresentable, VerifyWebView {
 
 	public func makeUIView(context: Context) -> WKWebView {
 		if AVCaptureDevice.authorizationStatus(for: .video) != .authorized {
-			fatalError(VerifyError.permissionDenied.localizedDescription)
+            if Verify.shared.debug {
+                Verify.logger.warning("\(VerifyError.permissionDenied.localizedDescription)")
+            }
 		}
         coordinator.delegate = self
         let webView = createWebView(frame: .zero, sessionId: sessionId, lang: lang, tierIdentifier: tierIdentifier)
