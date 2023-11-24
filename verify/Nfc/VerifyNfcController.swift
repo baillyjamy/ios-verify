@@ -7,6 +7,7 @@
 
 import WebKit
 import CoreNFC
+import AudioToolbox
 
 @available(iOS 15.0, *)
 public class VerifyNfcController: NSObject {
@@ -244,6 +245,9 @@ extension VerifyNfcController: VerifyNfcEvent {
     func nfcStep(body: [String: AnyObject]) {
         guard let value = body["step"] as? String else { return }
         self.step = value
+        if self.step?.lowercased() == "authenticate" {
+            AudioServicesPlaySystemSound(1519)
+        }
         if let isProgressString = body["progress"] as? Int {
             self.isProgress = (isProgressString != 0)
         }
