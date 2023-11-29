@@ -54,7 +54,7 @@ public enum VerifyLang {
         }
     }
 
-    static func from(code: String) -> VerifyLang {
+    public static func from(code: String) -> VerifyLang {
         switch code {
         case "en":
             return .english
