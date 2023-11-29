@@ -53,4 +53,39 @@ public enum VerifyLang {
             return "zh-TW"
         }
     }
+
+    static func from(code: String) -> VerifyLang {
+        switch code {
+        case "en":
+            return .english
+        case "fr":
+            return .french
+        case "de":
+            return .german
+        case "es":
+            return .spanish
+        case "it":
+            return .italian
+        case "ja":
+            return .japanese
+        case "ko":
+            return .korean
+        case "pt":
+            return .portuguese
+        case "ro":
+            return .romanian
+        case "ru":
+            return .russian
+        case "tr":
+            return .turkish
+        case "vi":
+            return .vietnamese
+        case "zh-CN":
+            return .chinese
+        case "zh-TW":
+            return .chineseTraditional
+        default:
+            return .english
+        }
+    }
 }
