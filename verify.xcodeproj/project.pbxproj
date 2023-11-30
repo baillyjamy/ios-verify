@@ -27,6 +27,7 @@
 		7797378F2A8665F400B41CFF /* VerifyError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7797378E2A8665F400B41CFF /* VerifyError.swift */; };
 		779737932A866D6C00B41CFF /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 779737922A866D6C00B41CFF /* README.md */; };
 		779737952A866D8E00B41CFF /* SynapsVerify.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 779737942A866D8E00B41CFF /* SynapsVerify.podspec */; };
+		77AC7C192B18A46500D84CCF /* VerifyWebViewSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AC7C182B18A46500D84CCF /* VerifyWebViewSettings.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +63,7 @@
 		779737902A866D5400B41CFF /* Package.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		779737922A866D6C00B41CFF /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		779737942A866D8E00B41CFF /* SynapsVerify.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SynapsVerify.podspec; sourceTree = "<group>"; };
+		77AC7C182B18A46500D84CCF /* VerifyWebViewSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyWebViewSettings.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +144,7 @@
 				774B43B92AEF0E670021FA4E /* VerifyWebView.swift */,
 				774B43C02AF14EB40021FA4E /* VerifyWebViewDelegate.swift */,
 				779737872A8661F300B41CFF /* VerifyWKUIDelegate.swift */,
+				77AC7C182B18A46500D84CCF /* VerifyWebViewSettings.swift */,
 			);
 			path = WebView;
 			sourceTree = "<group>";
@@ -293,6 +296,7 @@
 			files = (
 				779737882A8661F300B41CFF /* VerifyWKUIDelegate.swift in Sources */,
 				16A9BBDF283E686D0095A38C /* verify.docc in Sources */,
+				77AC7C192B18A46500D84CCF /* VerifyWebViewSettings.swift in Sources */,
 				774B43BA2AEF0E670021FA4E /* VerifyWebView.swift in Sources */,
 				774B43BE2AF14E2D0021FA4E /* VerifyNfcEvent.swift in Sources */,
 				778BF4922A6AA4D100C53165 /* VerifyView.swift in Sources */,
@@ -479,7 +483,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.8;
+				MARKETING_VERSION = 1.0.9;
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++17";
 				ONLY_ACTIVE_ARCH = NO;
@@ -520,7 +524,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.8;
+				MARKETING_VERSION = 1.0.9;
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++17";
 				ONLY_ACTIVE_ARCH = NO;

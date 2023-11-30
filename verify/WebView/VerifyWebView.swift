@@ -12,13 +12,18 @@ protocol VerifyWebView: VerifyDelegate {
     var coordinator: VerifyNfcController { get }
     var listener: VerifyListener { get }
     var webViewDelegate: VerifyWKUIDelegate { get }
-    func prepareRequest(sessionId: String, lang: VerifyLang, tierIdentifier: String?) -> URLRequest
+    func prepareRequest(sessionId: String, lang: VerifyLang, tierIdentifier: String?, settings: VerifyWebViewSettings?) -> URLRequest
 }
 
 extension VerifyWebView {
-    func createWebView(frame: CGRect, sessionId: String, lang: VerifyLang, tierIdentifier: String?) -> WKWebView {
+    func createWebView(frame: CGRect, sessionId: String, lang: VerifyLang, tierIdentifier: String?, settings: VerifyWebViewSettings?) -> WKWebView {
         let webView = WKWebView(frame: frame, configuration: createWebViewConfiguration())
-        let request = prepareRequest(sessionId: sessionId, lang: lang, tierIdentifier: tierIdentifier)
+        let request = prepareRequest(
+            sessionId: sessionId,
+            lang: lang,
+            tierIdentifier: tierIdentifier,
+            settings: settings
+        )
         webView.load(request)
         webView.uiDelegate = webViewDelegate
         webView.isOpaque = false
@@ -33,14 +38,20 @@ extension VerifyWebView {
         return webView
     }
 
-    func prepareRequest(sessionId: String, lang: VerifyLang, tierIdentifier: String?) -> URLRequest {
+    func prepareRequest(sessionId: String, lang: VerifyLang, tierIdentifier: String?, settings: VerifyWebViewSettings?) -> URLRequest {
         var request = URLRequest(url: Verify.baseUrl)
-        let params = [
+        var params: [String: String?] = [
             "session_id": sessionId,
             "lang": lang.code,
             "platform": "ios",
             "tier": tierIdentifier
         ]
+
+        settings?.toParameters().forEach { key, value in
+            if value != nil {
+                params[key] = value
+            }
+        }
 
         request.append(parameters: params)
         return request
