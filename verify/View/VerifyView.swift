@@ -15,6 +15,7 @@ public struct VerifyView: UIViewRepresentable, VerifyWebView {
 	let sessionId: String
 	let lang: VerifyLang
 	let tierIdentifier: String?
+    let settings: VerifyWebViewSettings?
 
     let coordinator = VerifyNfcController()
 	let webViewDelegate = VerifyWKUIDelegate()
@@ -28,7 +29,21 @@ public struct VerifyView: UIViewRepresentable, VerifyWebView {
         self.sessionId = sessionId
 		self.lang = lang
 		self.tierIdentifier = tierIdentifier
+        self.settings = nil
 	}
+
+    public init(
+        sessionId: String,
+        lang: VerifyLang = .english,
+        tier tierIdentifier: String? = nil,
+        hideClose: Bool = false
+    ) {
+        self.sessionId = sessionId
+        self.lang = lang
+        self.tierIdentifier = tierIdentifier
+        self.settings = VerifyWebViewSettings(hideClose: hideClose)
+    }
+
 
 	public func makeUIView(context: Context) -> WKWebView {
 		if AVCaptureDevice.authorizationStatus(for: .video) != .authorized {
@@ -37,7 +52,13 @@ public struct VerifyView: UIViewRepresentable, VerifyWebView {
             }
 		}
         coordinator.delegate = self
-        let webView = createWebView(frame: .zero, sessionId: sessionId, lang: lang, tierIdentifier: tierIdentifier)
+        let webView = createWebView(
+            frame: .zero,
+            sessionId: sessionId,
+            lang: lang,
+            tierIdentifier: tierIdentifier,
+            settings: settings
+        )
 		return webView
 	}
 
