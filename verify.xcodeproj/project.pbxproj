@@ -63,8 +63,8 @@
 		779737902A866D5400B41CFF /* Package.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		779737922A866D6C00B41CFF /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		779737942A866D8E00B41CFF /* SynapsVerify.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SynapsVerify.podspec; sourceTree = "<group>"; };
-		77AC7C162B17EFE500D84CCF /* build-universal-framework.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "build-universal-framework.sh"; sourceTree = "<group>"; };
 		77AC7C182B18A46500D84CCF /* VerifyWebViewSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyWebViewSettings.swift; sourceTree = "<group>"; };
+		77AC7C262B1A3D3900D84CCF /* build-xcframework.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "build-xcframework.sh"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,7 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				16A9BBDC283E686D0095A38C /* verify */,
-				77AC7C162B17EFE500D84CCF /* build-universal-framework.sh */,
+				77AC7C262B1A3D3900D84CCF /* build-xcframework.sh */,
 				774B43C72AF1617F0021FA4E /* .swiftlint.yml */,
 				779737942A866D8E00B41CFF /* SynapsVerify.podspec */,
 				779737922A866D6C00B41CFF /* README.md */,
