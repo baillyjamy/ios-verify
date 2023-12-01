@@ -31,7 +31,13 @@ public class VerifyUiView: UIView, VerifyWebView {
             }
         }
         coordinator.delegate = self
-        webView = createWebView(frame: self.frame, sessionId: sessionId, lang: lang, tierIdentifier: tierIdentifier)
+        webView = createWebView(
+            frame: self.frame,
+            sessionId: sessionId,
+            lang: lang,
+            tierIdentifier: tierIdentifier,
+            settings: nil
+        )
         self.addSubview(webView)
         setConstraints()
     }
