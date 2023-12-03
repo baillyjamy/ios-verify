@@ -12,6 +12,6 @@ let package = Package(
     dependencies: [
     ],
     targets: [
-        .target(name: "SynapsVerify", dependencies: [], path: "verify")
+        .target(name: "SynapsVerify", dependencies: [], path: "SynapsVerify")
     ]
 )
