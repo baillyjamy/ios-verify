@@ -19,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		779BD6AF2B1CE7C700976F24 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = SOURCE_ROOT; };
 		77AC7C772B1CD55A00D84CCF /* VerifyUiKitSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VerifyUiKitSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		77AC7C7A2B1CD55A00D84CCF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		77AC7C7C2B1CD55A00D84CCF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -72,6 +73,7 @@
 				77AC7C882B1CD55B00D84CCF /* Info.plist */,
 				77AC7C902B1CD6A400D84CCF /* VerifyViewController.swift */,
 				77AC7C932B1CD6B600D84CCF /* HomeViewController.swift */,
+				779BD6AF2B1CE7C700976F24 /* .swiftlint.yml */,
 			);
 			path = VerifyUiKitSample;
 			sourceTree = "<group>";
@@ -90,6 +92,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				779BD6AE2B1CE60300976F24 /* PBXTargetDependency */,
 			);
 			name = VerifyUiKitSample;
 			packageProductDependencies = (
@@ -126,6 +129,7 @@
 			mainGroup = 77AC7C6E2B1CD55A00D84CCF;
 			packageReferences = (
 				77AC7C982B1CD94E00D84CCF /* XCLocalSwiftPackageReference "../.." */,
+				779BD6AC2B1CE5F800976F24 /* XCRemoteSwiftPackageReference "SwiftLint" */,
 			);
 			productRefGroup = 77AC7C782B1CD55A00D84CCF /* Products */;
 			projectDirPath = "";
@@ -162,6 +166,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		779BD6AE2B1CE60300976F24 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 779BD6AD2B1CE60300976F24 /* SwiftLintPlugin */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		77AC7C802B1CD55A00D84CCF /* Main.storyboard */ = {
@@ -398,7 +409,23 @@
 		};
 /* End XCLocalSwiftPackageReference section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		779BD6AC2B1CE5F800976F24 /* XCRemoteSwiftPackageReference "SwiftLint" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/SwiftLint.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.54.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
+		779BD6AD2B1CE60300976F24 /* SwiftLintPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 779BD6AC2B1CE5F800976F24 /* XCRemoteSwiftPackageReference "SwiftLint" */;
+			productName = "plugin:SwiftLintPlugin";
+		};
 		77AC7C962B1CD8A500D84CCF /* SynapsVerify */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = SynapsVerify;

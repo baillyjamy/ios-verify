@@ -8,7 +8,7 @@
 import UIKit
 import SynapsVerify
 
-class VerifyViewController : UIViewController {
+class VerifyViewController: UIViewController {
     @IBOutlet weak var verifyView: VerifyUiView!
 
     var sessionId: String = ""

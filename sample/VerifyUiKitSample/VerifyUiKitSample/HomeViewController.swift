@@ -13,7 +13,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var sessionTextField: UITextField!
     @IBOutlet weak var startButton: UIButton!
 
-    var authorizationCamera: Bool = false
+    var authorizationCamera = false
     let defaultSessionId: String = ""
 
     override func viewDidLoad() {
@@ -29,7 +29,7 @@ class HomeViewController: UIViewController {
         if AVCaptureDevice.authorizationStatus(for: .video) == .authorized {
             authorizationCamera = true
         }
-        if (authorizationCamera) {
+        if authorizationCamera {
             titleLabel.text = "Enter your session ID"
             sessionTextField.placeholder = "Session ID"
             sessionTextField.isHidden = false
@@ -52,20 +52,21 @@ class HomeViewController: UIViewController {
             }
         } else {
             AVCaptureDevice.requestAccess(
-                for: .video,
-                completionHandler: { accessGranted in
-                    DispatchQueue.main.async {
-                        self.authorizationCamera = accessGranted
-                        self.updateScreen()
-                    }
+                for: .video
+            ) { accessGranted in
+                DispatchQueue.main.async {
+                    self.authorizationCamera = accessGranted
+                    self.updateScreen()
                 }
-            )
+            }
         }
     }
 
     @IBAction func onStartButton(_ sender: Any) {
-        if (authorizationCamera) {
-            if let vc = storyboard?.instantiateViewController(withIdentifier: "VerifyViewController") as? VerifyViewController {
+        if authorizationCamera {
+            if let vc = storyboard?.instantiateViewController(
+                withIdentifier: "VerifyViewController"
+            ) as? VerifyViewController {
                 vc.sessionId = sessionTextField.text ?? ""
                 self.navigationController?.pushViewController(vc, animated: true)
             }
@@ -78,6 +79,6 @@ class HomeViewController: UIViewController {
 extension HomeViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
-        return true;
+        return true
     }
 }

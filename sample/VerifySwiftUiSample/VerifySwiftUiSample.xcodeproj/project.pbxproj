@@ -16,6 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		779BD6B22B1CE85E00976F24 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = SOURCE_ROOT; };
 		77AC7C532B1CC94B00D84CCF /* VerifySwiftUiSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VerifySwiftUiSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		77AC7C562B1CC94B00D84CCF /* VerifySwiftUiSampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifySwiftUiSampleApp.swift; sourceTree = "<group>"; };
 		77AC7C582B1CC94B00D84CCF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -64,6 +65,7 @@
 				77AC7C5A2B1CC94C00D84CCF /* Assets.xcassets */,
 				77AC7C5C2B1CC94C00D84CCF /* Preview Content */,
 				77AC7C6C2B1CCF5700D84CCF /* info.plist */,
+				779BD6B22B1CE85E00976F24 /* .swiftlint.yml */,
 			);
 			path = VerifySwiftUiSample;
 			sourceTree = "<group>";
