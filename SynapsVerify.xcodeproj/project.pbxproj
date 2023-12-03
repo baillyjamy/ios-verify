@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		16A9BBDF283E686D0095A38C /* verify.docc in Sources */ = {isa = PBXBuildFile; fileRef = 16A9BBDE283E686D0095A38C /* verify.docc */; };
 		16A9BBE5283E686D0095A38C /* SynapsVerify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16A9BBDA283E686D0095A38C /* SynapsVerify.framework */; };
 		16A9BBEA283E686D0095A38C /* verifyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A9BBE9283E686D0095A38C /* verifyTests.swift */; };
 		16A9BBEB283E686D0095A38C /* verify.h in Headers */ = {isa = PBXBuildFile; fileRef = 16A9BBDD283E686D0095A38C /* verify.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -43,7 +42,6 @@
 /* Begin PBXFileReference section */
 		16A9BBDA283E686D0095A38C /* SynapsVerify.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SynapsVerify.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		16A9BBDD283E686D0095A38C /* verify.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = verify.h; sourceTree = "<group>"; };
-		16A9BBDE283E686D0095A38C /* verify.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = verify.docc; sourceTree = "<group>"; };
 		16A9BBE4283E686D0095A38C /* SynapsVerifyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SynapsVerifyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		16A9BBE9283E686D0095A38C /* verifyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = verifyTests.swift; sourceTree = "<group>"; };
 		16A9BC1E2840E4FE0095A38C /* Verify.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Verify.swift; sourceTree = "<group>"; };
@@ -118,7 +116,6 @@
 				774B43BC2AF14E1C0021FA4E /* Nfc */,
 				779737892A8662AE00B41CFF /* Extension */,
 				16A9BBDD283E686D0095A38C /* verify.h */,
-				16A9BBDE283E686D0095A38C /* verify.docc */,
 			);
 			path = SynapsVerify;
 			sourceTree = "<group>";
@@ -296,7 +293,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				779737882A8661F300B41CFF /* VerifyWKUIDelegate.swift in Sources */,
-				16A9BBDF283E686D0095A38C /* verify.docc in Sources */,
 				77AC7C192B18A46500D84CCF /* VerifyWebViewSettings.swift in Sources */,
 				774B43BA2AEF0E670021FA4E /* VerifyWebView.swift in Sources */,
 				774B43BE2AF14E2D0021FA4E /* VerifyNfcEvent.swift in Sources */,
