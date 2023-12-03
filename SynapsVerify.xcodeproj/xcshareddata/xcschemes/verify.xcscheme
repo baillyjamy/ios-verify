@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "16A9BBD9283E686D0095A38C"
-               BuildableName = "verify.framework"
-               BlueprintName = "verify"
-               ReferencedContainer = "container:verify.xcodeproj">
+               BuildableName = "SynapsVerify.framework"
+               BlueprintName = "SynapsVerify"
+               ReferencedContainer = "container:SynapsVerify.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "16A9BBE3283E686D0095A38C"
-               BuildableName = "verifyTests.xctest"
-               BlueprintName = "verifyTests"
-               ReferencedContainer = "container:verify.xcodeproj">
+               BuildableName = "SynapsVerifyTests.xctest"
+               BlueprintName = "SynapsVerifyTests"
+               ReferencedContainer = "container:SynapsVerify.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -61,9 +61,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "16A9BBD9283E686D0095A38C"
-            BuildableName = "verify.framework"
-            BlueprintName = "verify"
-            ReferencedContainer = "container:verify.xcodeproj">
+            BuildableName = "SynapsVerify.framework"
+            BlueprintName = "SynapsVerify"
+            ReferencedContainer = "container:SynapsVerify.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>
