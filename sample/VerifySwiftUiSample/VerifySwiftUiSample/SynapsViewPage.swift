@@ -9,7 +9,8 @@ import SwiftUI
 import SynapsVerify
 
 struct SynapsViewPage: View {
-    @Environment(\.dismiss) var dismiss
+    @Environment(\.dismiss)
+    var dismiss
     @Binding var sessionId: String
 
     var body: some View {

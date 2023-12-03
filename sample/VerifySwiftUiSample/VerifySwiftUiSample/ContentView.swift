@@ -10,20 +10,22 @@ import AVFoundation
 import SynapsVerify
 
 struct ContentView: View {
-    @State var authorizationCamera: Bool = false
+    @State var authorizationCamera = false
 
     @State private var sessionId: String = ""
 
     var body: some View {
         NavigationView {
             VStack(spacing: 32) {
-                Image(uiImage: UIImage(named: "AppIcon")!)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 200.0, height: 200.0)
-                    .foregroundColor(.accentColor)
-                    .background(Color.red)
-                if (authorizationCamera) {
+                if let uiImage = UIImage(named: "AppIcon") {
+                    Image(uiImage: uiImage)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 200.0, height: 200.0)
+                        .foregroundColor(.accentColor)
+                        .background(Color.red)
+                }
+                if authorizationCamera {
                     Text("Enter your session ID")
                     TextField("Session ID", text: $sessionId)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -57,13 +59,12 @@ struct ContentView: View {
             }
         } else {
             AVCaptureDevice.requestAccess(
-                for: .video,
-                completionHandler: { accessGranted in
-                    DispatchQueue.main.async {
-                        self.authorizationCamera = accessGranted
-                    }
+                for: .video
+            ) { accessGranted in
+                DispatchQueue.main.async {
+                    self.authorizationCamera = accessGranted
                 }
-            )
+            }
         }
     }
 }
