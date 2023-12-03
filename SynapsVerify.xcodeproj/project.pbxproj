@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		16A9BBDF283E686D0095A38C /* verify.docc in Sources */ = {isa = PBXBuildFile; fileRef = 16A9BBDE283E686D0095A38C /* verify.docc */; };
-		16A9BBE5283E686D0095A38C /* verify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16A9BBDA283E686D0095A38C /* verify.framework */; };
+		16A9BBE5283E686D0095A38C /* SynapsVerify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16A9BBDA283E686D0095A38C /* SynapsVerify.framework */; };
 		16A9BBEA283E686D0095A38C /* verifyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A9BBE9283E686D0095A38C /* verifyTests.swift */; };
 		16A9BBEB283E686D0095A38C /* verify.h in Headers */ = {isa = PBXBuildFile; fileRef = 16A9BBDD283E686D0095A38C /* verify.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		16A9BC1F2840E4FE0095A38C /* Verify.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A9BC1E2840E4FE0095A38C /* Verify.swift */; };
@@ -41,10 +41,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		16A9BBDA283E686D0095A38C /* verify.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = verify.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		16A9BBDA283E686D0095A38C /* SynapsVerify.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SynapsVerify.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		16A9BBDD283E686D0095A38C /* verify.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = verify.h; sourceTree = "<group>"; };
 		16A9BBDE283E686D0095A38C /* verify.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = verify.docc; sourceTree = "<group>"; };
-		16A9BBE4283E686D0095A38C /* verifyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = verifyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		16A9BBE4283E686D0095A38C /* SynapsVerifyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SynapsVerifyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		16A9BBE9283E686D0095A38C /* verifyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = verifyTests.swift; sourceTree = "<group>"; };
 		16A9BC1E2840E4FE0095A38C /* Verify.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Verify.swift; sourceTree = "<group>"; };
 		770FD0092ADBFD31002FB641 /* VerifyLang.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyLang.swift; sourceTree = "<group>"; };
@@ -79,7 +79,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				16A9BBE5283E686D0095A38C /* verify.framework in Frameworks */,
+				16A9BBE5283E686D0095A38C /* SynapsVerify.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -89,7 +89,7 @@
 		16A9BBD0283E686D0095A38C = {
 			isa = PBXGroup;
 			children = (
-				16A9BBDC283E686D0095A38C /* verify */,
+				16A9BBDC283E686D0095A38C /* SynapsVerify */,
 				77AC7C262B1A3D3900D84CCF /* build-xcframework.sh */,
 				774B43C72AF1617F0021FA4E /* .swiftlint.yml */,
 				779737942A866D8E00B41CFF /* SynapsVerify.podspec */,
@@ -103,13 +103,13 @@
 		16A9BBDB283E686D0095A38C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				16A9BBDA283E686D0095A38C /* verify.framework */,
-				16A9BBE4283E686D0095A38C /* verifyTests.xctest */,
+				16A9BBDA283E686D0095A38C /* SynapsVerify.framework */,
+				16A9BBE4283E686D0095A38C /* SynapsVerifyTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		16A9BBDC283E686D0095A38C /* verify */ = {
+		16A9BBDC283E686D0095A38C /* SynapsVerify */ = {
 			isa = PBXGroup;
 			children = (
 				774B43C22AF1525D0021FA4E /* View */,
@@ -120,7 +120,7 @@
 				16A9BBDD283E686D0095A38C /* verify.h */,
 				16A9BBDE283E686D0095A38C /* verify.docc */,
 			);
-			path = verify;
+			path = SynapsVerify;
 			sourceTree = "<group>";
 		};
 		16A9BBE8283E686D0095A38C /* verifyTests */ = {
@@ -194,9 +194,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		16A9BBD9283E686D0095A38C /* verify */ = {
+		16A9BBD9283E686D0095A38C /* SynapsVerify */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 16A9BBEE283E686D0095A38C /* Build configuration list for PBXNativeTarget "verify" */;
+			buildConfigurationList = 16A9BBEE283E686D0095A38C /* Build configuration list for PBXNativeTarget "SynapsVerify" */;
 			buildPhases = (
 				16A9BBD5283E686D0095A38C /* Headers */,
 				16A9BBD6283E686D0095A38C /* Sources */,
@@ -208,14 +208,14 @@
 			dependencies = (
 				774B43C62AF1605A0021FA4E /* PBXTargetDependency */,
 			);
-			name = verify;
+			name = SynapsVerify;
 			productName = verify;
-			productReference = 16A9BBDA283E686D0095A38C /* verify.framework */;
+			productReference = 16A9BBDA283E686D0095A38C /* SynapsVerify.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		16A9BBE3283E686D0095A38C /* verifyTests */ = {
+		16A9BBE3283E686D0095A38C /* SynapsVerifyTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 16A9BBF1283E686D0095A38C /* Build configuration list for PBXNativeTarget "verifyTests" */;
+			buildConfigurationList = 16A9BBF1283E686D0095A38C /* Build configuration list for PBXNativeTarget "SynapsVerifyTests" */;
 			buildPhases = (
 				16A9BBE0283E686D0095A38C /* Sources */,
 				16A9BBE1283E686D0095A38C /* Frameworks */,
@@ -226,9 +226,9 @@
 			dependencies = (
 				16A9BBE7283E686D0095A38C /* PBXTargetDependency */,
 			);
-			name = verifyTests;
+			name = SynapsVerifyTests;
 			productName = verifyTests;
-			productReference = 16A9BBE4283E686D0095A38C /* verifyTests.xctest */;
+			productReference = 16A9BBE4283E686D0095A38C /* SynapsVerifyTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -249,7 +249,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 16A9BBD4283E686D0095A38C /* Build configuration list for PBXProject "verify" */;
+			buildConfigurationList = 16A9BBD4283E686D0095A38C /* Build configuration list for PBXProject "SynapsVerify" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -264,8 +264,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				16A9BBD9283E686D0095A38C /* verify */,
-				16A9BBE3283E686D0095A38C /* verifyTests */,
+				16A9BBD9283E686D0095A38C /* SynapsVerify */,
+				16A9BBE3283E686D0095A38C /* SynapsVerifyTests */,
 			);
 		};
 /* End PBXProject section */
@@ -326,7 +326,7 @@
 /* Begin PBXTargetDependency section */
 		16A9BBE7283E686D0095A38C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 16A9BBD9283E686D0095A38C /* verify */;
+			target = 16A9BBD9283E686D0095A38C /* SynapsVerify */;
 			targetProxy = 16A9BBE6283E686D0095A38C /* PBXContainerItemProxy */;
 		};
 		774B43C62AF1605A0021FA4E /* PBXTargetDependency */ = {
@@ -577,7 +577,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		16A9BBD4283E686D0095A38C /* Build configuration list for PBXProject "verify" */ = {
+		16A9BBD4283E686D0095A38C /* Build configuration list for PBXProject "SynapsVerify" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				16A9BBEC283E686D0095A38C /* Debug */,
@@ -586,7 +586,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		16A9BBEE283E686D0095A38C /* Build configuration list for PBXNativeTarget "verify" */ = {
+		16A9BBEE283E686D0095A38C /* Build configuration list for PBXNativeTarget "SynapsVerify" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				16A9BBEF283E686D0095A38C /* Debug */,
@@ -595,7 +595,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		16A9BBF1283E686D0095A38C /* Build configuration list for PBXNativeTarget "verifyTests" */ = {
+		16A9BBF1283E686D0095A38C /* Build configuration list for PBXNativeTarget "SynapsVerifyTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				16A9BBF2283E686D0095A38C /* Debug */,
