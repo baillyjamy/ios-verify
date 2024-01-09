@@ -40,19 +40,21 @@ extension VerifyWebView {
 
     func prepareRequest(sessionId: String, lang: VerifyLang, tierIdentifier: String?, settings: VerifyWebViewSettings?) -> URLRequest {
         var request = URLRequest(url: Verify.baseUrl)
-        var params: [String: String?] = [
-            "session_id": sessionId,
-            "lang": lang.code,
-            "platform": "ios",
-            "tier": tierIdentifier
-        ]
-
-        settings?.toParameters().forEach { key, value in
-            if value != nil {
-                params[key] = value
-            }
+        var params: [String: String?]
+        if let settings {
+            params = settings.toParameters()
+            params["session_id"] = sessionId
+            params["lang"] = lang.code
+            params["platform"] = "ios"
+            params["tier"] = tierIdentifier
+        } else {
+            params = [
+                "session_id": sessionId,
+                "lang": lang.code,
+                "platform": "ios",
+                "tier": tierIdentifier
+            ]
         }
-
         request.append(parameters: params)
         return request
     }
