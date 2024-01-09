@@ -44,6 +44,18 @@ public struct VerifyView: UIViewRepresentable, VerifyWebView {
         self.settings = VerifyWebViewSettings(hideClose: hideClose)
     }
 
+    public init(
+        sessionId: String,
+        lang: VerifyLang = .english,
+        tier tierIdentifier: String? = nil,
+        queryItems: [URLQueryItem]
+    ) {
+        self.sessionId = sessionId
+        self.lang = lang
+        self.tierIdentifier = tierIdentifier
+        self.settings = VerifyWebViewSettings(queryItems: queryItems)
+    }
+
 
 	public func makeUIView(context: Context) -> WKWebView {
 		if AVCaptureDevice.authorizationStatus(for: .video) != .authorized {
