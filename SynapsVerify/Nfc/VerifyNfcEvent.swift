@@ -14,4 +14,5 @@ protocol VerifyNfcEvent {
     func nfcStep(body: [String: AnyObject])
     func nfcLog(body: [String: AnyObject])
     func localize(body: [String: AnyObject])
+    func cameraRequestPermission(body: [String: AnyObject])
 }

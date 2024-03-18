@@ -8,8 +8,8 @@
 import WebKit
 
 @available(iOS 15.0, *)
-public class VerifyWKUIDelegate: NSObject, WKUIDelegate {
-	public func webView(
+internal class VerifyWKUIDelegate: NSObject, WKUIDelegate {
+    internal func webView(
 		_ webView: WKWebView,
 		requestMediaCapturePermissionFor origin: WKSecurityOrigin,
 		initiatedByFrame frame: WKFrameInfo,
