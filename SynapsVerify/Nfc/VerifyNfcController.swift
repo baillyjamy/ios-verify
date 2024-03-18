@@ -7,10 +7,10 @@
 
 import WebKit
 import CoreNFC
-import AudioToolbox
+import AVFoundation
 
 @available(iOS 15.0, *)
-public class VerifyNfcController: NSObject {
+internal class VerifyNfcController: NSObject {
     private var readerSession: NFCTagReaderSession?
 
     private var step: String?
@@ -73,7 +73,7 @@ public class VerifyNfcController: NSObject {
 
 @available(iOS 15.0, *)
 extension VerifyNfcController: WKScriptMessageHandler {
-    public func userContentController(
+    internal func userContentController(
         _ userContentController: WKUserContentController,
         didReceive message: WKScriptMessage
     ) {
@@ -107,6 +107,8 @@ extension VerifyNfcController: WKScriptMessageHandler {
                     nfcStep(body: body)
                 case "localize":
                     localize(body: body)
+                case "request_camera_permission":
+                    cameraRequestPermission(body: body)
                 default:
                     break
                 }
@@ -116,13 +118,13 @@ extension VerifyNfcController: WKScriptMessageHandler {
 }
 
 extension VerifyNfcController: NFCTagReaderSessionDelegate {
-    public func tagReaderSessionDidBecomeActive(_ session: NFCTagReaderSession) {
+    func tagReaderSessionDidBecomeActive(_ session: NFCTagReaderSession) {
         if Verify.shared.debug {
             Verify.logger.info("tagReaderSessionDidBecomeActive")
         }
     }
 
-    public func tagReaderSession(_ session: NFCTagReaderSession, didInvalidateWithError error: Error) {
+    func tagReaderSession(_ session: NFCTagReaderSession, didInvalidateWithError error: Error) {
         if Verify.shared.debug {
             Verify.logger.error("Error while reading tag: \(error)")
         }
@@ -135,7 +137,7 @@ extension VerifyNfcController: NFCTagReaderSessionDelegate {
         }
     }
 
-    public func tagReaderSession(_ session: NFCTagReaderSession, didDetect tags: [NFCTag]) {
+    func tagReaderSession(_ session: NFCTagReaderSession, didDetect tags: [NFCTag]) {
         DispatchQueue.main.async {
             if tags.count > 1 {
                 session.alertMessage = Verify.localize(
@@ -263,6 +265,11 @@ extension VerifyNfcController: VerifyNfcEvent {
         if let translations = body["translations"] as? [String: String] {
             Verify.translations = translations
         }
+    }
+
+    func cameraRequestPermission(body: [String: AnyObject]) {
+        let granted = AVCaptureDevice.authorizationStatus(for: .video) == .authorized
+        self.sendWebviewMessage("window.__verify_ios_camera_permission(\(granted)")
     }
 
     private func genProgress(percentage: Int) -> String {
